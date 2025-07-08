@@ -1,22 +1,21 @@
-# eForms
-For a full overview of the OH eForms data model, be sure to view the [eForms Confluence Page](https://ehealthontario.atlassian.net/wiki/spaces/~62963d75e540870069662edb/pages/4847796613/eForms+Data+Model#3.-Provincial-Data-Model)
-
-![eFormsData Model](eForms-DataModel.png)
-
-
-## Steps to Publish the eForms FSH Implementation Guide
+# Steps to Publish the eForms FSH Implementation Guide
 The process of publishing the eForms IG  involves the following steps, orchestrated through command-line scripts included in FSH project templates
 
 ![FHIR Overview](FSH.png)
 
 
-### Project Setup: 
-A standard FSH project is structured with specific folders : 
+## Project Setup: 
+Sushi is required on the developer workstation.  To get started: 
+
+1. clone this repository
+2. `cd [repository]`
+3. `npm install -g fsh-sushi`
+4. `./_genonce.sh`
+
+This  FSH project is structured with specific folders : 
 - `input/fsh` for FSH files, 
 - `input/pagecontent` for narrative content
 - `sushi-config.yaml` for  configuration. 
-
-This is the default strucuture since this project was initialized via `sushi --init`.
 
 ##Updating the IG Publisher
 The first step before publishing is always to download have the latest version of the HL7 FHIR IG Publisher.  Sushi provides a script to help: 
@@ -52,3 +51,5 @@ The recipient of this project would then follow the same steps described above:
 - Clone this project repository.
 - Run the `_updatePublisher` script to download the IG Publisher.
 - Run the `_genonce` script to build the Implementation Guide locally.
+
+

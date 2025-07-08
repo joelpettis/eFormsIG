@@ -6,31 +6,33 @@
 id: fhir.ca.on.eforms
 canonical: http://ontario.ca/fhir/eforms
 name: eForms
-# title: Example Title
-# description: Example Implementation Guide for getting started with SUSHI
-status: draft # draft | active | retired | unknown
+title: Ontario Health eForms Implementation Guide
+description: This is the Implementation Guide for Ontario Health eForms
+status: draft  # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2025+
 releaseLabel: ci-build
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
-# jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
+jurisdiction: urn:iso:std:iso:3166:-2#CA-ON "Ontario" # https://www.hl7.org/fhir/valueset-jurisdiction.html
 publisher:
   name: Joel Pettis
-  url: http://smileditialhealth.org/JoelPettis
-  # email: test@example.org
+  url: http://smileditialhealth.com/JoelPettis
+  email: joel.pettis@smiledigitalhealth.com
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
 #
-# dependencies:
+dependencies:
+  hl7.fhir.uv.sdc:  4.0.0-ballot        # R4 version that contains sdc-task
+#  hl7.fhir.r4.core: 4.0.1
 #   hl7.fhir.us.core: 3.1.0
 #   hl7.fhir.us.mcode:
 #     id: mcode
 #     uri: http://hl7.org/fhir/us/mcode/ImplementationGuide/hl7.fhir.us.mcode
 #     version: 1.0.0
-#
+
 #
 # The pages property corresponds to IG.definition.page. SUSHI can
 # auto-generate the page list, but if the author includes pages in
@@ -43,9 +45,9 @@ publisher:
 # with supported extensions (e.g., .md/.xml) will be treated as
 # sub-pages.
 #
-# pages:
-#   index.md:
-#     title: Example Home
+pages:
+   index.md:
+    title: eForms Home
 #   implementation.xml:
 #   examples.xml:
 #     title: Examples Overview
@@ -76,7 +78,7 @@ publisher:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
-  Artifacts: artifacts.html
+  FHIR Artifacts: artifacts.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │

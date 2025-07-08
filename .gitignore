@@ -1,0 +1,22 @@
+# OS generated files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# FHIR Publisher output directory
+output/
+temp/
+template/
+input-cache/
+*publisher.jar
+*.log
+snapshot-*
+coverage/
+
+# SUSHI generated files
+fsh-generated/
