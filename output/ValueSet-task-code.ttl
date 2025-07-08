@@ -1,0 +1,52 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://ontario.ca/fhir/eforms/ValueSet/task-code> a fhir:ValueSet ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "task-code"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ValueSet task-code</b></p><a name=\"task-code\"> </a><a name=\"hctask-code\"> </a><p>This value set includes codes based on the following rules:</p><ul><li>Include all codes defined in <a href=\"http://hl7.org/fhir/R4/codesystem-task-code.html\"><code>http://hl7.org/fhir/CodeSystem/task-code</code></a></li><li>Include all codes defined in <a href=\"http://hl7.org/fhir/uv/sdc/2025Jan/CodeSystem-temp.html\"><code>http://hl7.org/fhir/uv/sdc/CodeSystem/temp</code></a></li><li>Include all codes defined in <a href=\"CodeSystem-task-code.html\"><code>http://ontario.ca/fhir/eforms/CodeSystem/task-code</code></a></li></ul></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:url [ fhir:v "http://ontario.ca/fhir/eforms/ValueSet/task-code"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "EFormsTaskCodeVS"] ; # 
+  fhir:title [ fhir:v "OH eForms Task Code ValueSet"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:date [ fhir:v "2025-07-07T23:32:55-04:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Joel Pettis"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Joel Pettis" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://smileditialhealth.com/JoelPettis" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "joel.pettis@smiledigitalhealth.com" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Allowed codes for `Task.code` in the eForms implementation guide.\nCombines base FHIR Task codes, SDC codes, and eForms-specific codes."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166:-2"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CA-ON" ] ;
+       fhir:display [ fhir:v "Ontario" ]
+     ] )
+  ] ) ; # 
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/CodeSystem/task-code"^^xsd:anyURI ]
+     ] [
+       fhir:system [ fhir:v "http://hl7.org/fhir/uv/sdc/CodeSystem/temp"^^xsd:anyURI ]
+     ] [
+       fhir:system [ fhir:v "http://ontario.ca/fhir/eforms/CodeSystem/task-code"^^xsd:anyURI ]
+     ] )
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

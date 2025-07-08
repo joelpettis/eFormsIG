@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OperationDefinition xmlns="http://hl7.org/fhir">
+  <id value="InstantiateFormWorkflow"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: OperationDefinition InstantiateFormWorkflow</b></p><a name="InstantiateFormWorkflow"> </a><a name="hcInstantiateFormWorkflow"> </a><p>URL: [base]/PlanDefinition/[id]/$instantiateFormWorkflow</p><h3>Parameters</h3><table class="grid"><tr><td><b>Use</b></td><td><b>Name</b></td><td><b>Scope</b></td><td><b>Cardinality</b></td><td><b>Type</b></td><td><b>Binding</b></td><td><b>Documentation</b></td></tr><tr><td>IN</td><td>subject</td><td/><td>1..1</td><td><a href="http://hl7.org/fhir/R4/references.html#Reference">Reference</a> (<a href="StructureDefinition-EFormPatient.html" title="http://ontario.ca/fhir/eforms/StructureDefinition/EFormPatient">Patient Profile</a>)</td><td/><td><div><p>The individual who is the subject of the eForm. Sourced from CMS when possible.</p>
+</div></td></tr><tr><td>IN</td><td>requester</td><td/><td>0..1</td><td><a href="http://hl7.org/fhir/R4/references.html#Reference">Reference</a> (<a href="StructureDefinition-EFormPractitionerRole.html" title="http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole">PractitionerRole Profile</a>, <a href="StructureDefinition-EFormOrganization.html" title="http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization">Organization Profile</a>)</td><td/><td><div><p>The Organization (or PractionerRole) <strong>placing</strong> the ServiceRequest.  They are the initiators of the eForms workflow</p>
+</div></td></tr><tr><td>IN</td><td>performer</td><td/><td>0..1</td><td><a href="http://hl7.org/fhir/R4/references.html#Reference">Reference</a> (<a href="StructureDefinition-EFormPractitionerRole.html" title="http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole">PractitionerRole Profile</a>, <a href="StructureDefinition-EFormOrganization.html" title="http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization">Organization Profile</a>)</td><td/><td><div><p>The Organization (or PractionerRole) who will be <strong>assigned</strong> the ServiceRequest.  They will be required to complete (at <strong>least</strong> one) QuestionnaireResponse</p>
+</div></td></tr><tr><td>OUT</td><td>bundle</td><td/><td>1..1</td><td><a href="http://hl7.org/fhir/R4/bundle.html">Bundle</a></td><td/><td><div><p>A Bundle of type <strong>collection</strong> containing the persisted ServiceRequest as the
+first entry and all associated Task resources as subsequent entries.<br/>
+Clients should treat the bundle as a read‑only snapshot of the workflow that
+has just been created.</p>
+</div></td></tr><tr><td>OUT</td><td>outcome</td><td/><td>0..1</td><td><a href="http://hl7.org/fhir/R4/operationoutcome.html">OperationOutcome</a></td><td/><td><div><p>Optional OperationOutcome conveying warnings or informational messages.</p>
+</div></td></tr></table></div>
+  </text>
+  <url value="http://ontario.ca/fhir/OperationDefinition/instantiateFormWorkflow"/>
+  <version value="0.1.0"/>
+  <name value="InstantiateFormWorkflow"/>
+  <title value="[base]/PlanDefinition/[id]/$instantiateFormWorkflow"/>
+  <status value="draft"/>
+  <kind value="operation"/>
+  <date value="2025-07-04"/>
+  <publisher value="Joel Pettis"/>
+  <contact>
+    <name value="Joel Pettis"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://smileditialhealth.com/JoelPettis"/>
+    </telecom>
+    <telecom>
+      <system value="email"/>
+      <value value="joel.pettis@smiledigitalhealth.com"/>
+    </telecom>
+  </contact>
+  <description value="Instantiates the eform Workflow by creating a ServiceRequesta as well as all required Tasks, &#xA;as defined by the Plan Definition.activity[].  The Service `Request Questionnaire extension`&#xA;provides the reference(s) to the assoicated Quesstionnaires. &#xA;&#xA;&#xA;The operation **persists** all resources derived from the associate &#xA;Paln Definition in the Repository and then returns a&#xA;**collection** Bundle snapshot (plus an optional OperationOutcome)."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166:-2"/>
+      <code value="CA-ON"/>
+      <display value="Ontario"/>
+    </coding>
+  </jurisdiction>
+  <code value="instantiateFormWorkflow"/>
+  <resource value="PlanDefinition"/>
+  <system value="false"/>
+  <type value="false"/>
+  <instance value="true"/>
+  <parameter>
+    <name value="subject"/>
+    <use value="in"/>
+    <min value="1"/>
+    <max value="1"/>
+    <documentation value="The individual who is the subject of the eForm. Sourced from CMS when possible. "/>
+    <type value="Reference"/>
+    <targetProfile value="http://ontario.ca/fhir/eforms/StructureDefinition/EFormPatient"/>
+  </parameter>
+  <parameter>
+    <name value="requester"/>
+    <use value="in"/>
+    <min value="0"/>
+    <max value="1"/>
+    <documentation value="The Organization (or PractionerRole) __placing__ the ServiceRequest.  They are the initiators of the eForms workflow"/>
+    <type value="Reference"/>
+    <targetProfile value="http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole"/>
+    <targetProfile value="http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization"/>
+  </parameter>
+  <parameter>
+    <name value="performer"/>
+    <use value="in"/>
+    <min value="0"/>
+    <max value="1"/>
+    <documentation value="The Organization (or PractionerRole) who will be __assigned__ the ServiceRequest.  They will be required to complete (at __least__ one) QuestionnaireResponse"/>
+    <type value="Reference"/>
+    <targetProfile value="http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole"/>
+    <targetProfile value="http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization"/>
+  </parameter>
+  <parameter>
+    <name value="bundle"/>
+    <use value="out"/>
+    <min value="1"/>
+    <max value="1"/>
+    <documentation value="A Bundle of type **collection** containing the persisted ServiceRequest as the&#xA;first entry and all associated Task resources as subsequent entries.  &#xA;Clients should treat the bundle as a read‑only snapshot of the workflow that&#xA;has just been created."/>
+    <type value="Bundle"/>
+  </parameter>
+  <parameter>
+    <name value="outcome"/>
+    <use value="out"/>
+    <min value="0"/>
+    <max value="1"/>
+    <documentation value="Optional OperationOutcome conveying warnings or informational messages."/>
+    <type value="OperationOutcome"/>
+  </parameter>
+</OperationDefinition>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>eForms Home - Ontario Health eForms Implementation Guide v0.1.0</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"1"}
+    h3,h4,h5,h6{--heading-prefix:"1"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+
+        <div id="ig-status">
+          <p><span style="font-size:12pt;font-weight:bold">Ontario Health eForms Implementation Guide</span>
+            <br/>
+            <span style="display:inline-block;">0.1.0 - ci-build
+
+
+
+  <span title="">CA-ON</span>
+
+
+            </span>
+          </p>
+        </div>
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li>
+    <a href="artifacts.html">FHIR Artifacts</a>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>eForms Home</b></li>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  <!--ReleaseHeader--><p id="publish-box">Ontario Health eForms Implementation Guide - Local Development build (v0.1.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='http://ontario.ca/fhir/eforms/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+  <h2>eForms Home</h2>
+  
+
+
+
+
+
+
+  <table class="colsd">
+
+    <tr>
+      <td colspan="4"><i>Official URL</i>: <span class="copy-text">http://ontario.ca/fhir/eforms/ImplementationGuide/fhir.ca.on.eforms<button title="Click to copy URL" class="btn-copy" data-clipboard-text="http://ontario.ca/fhir/eforms/ImplementationGuide/fhir.ca.on.eforms"/></span>
+      </td>
+      <td><i>Version</i>:
+      <span class="copy-text">0.1.0<button title="Click to copy versioned URL" class="btn-copy" data-clipboard-text="http://ontario.ca/fhir/eforms/ImplementationGuide/fhir.ca.on.eforms|0.1.0"/></span>
+      </td>
+    </tr>
+
+    <tr>
+
+
+
+
+
+
+
+      <td colspan="4">
+        
+          Draft
+          
+            as of 2025-07-07
+          
+        
+      </td>
+
+
+
+      <td><i>Computable Name</i>: <span style="font-family: monospace;">eForms</span></td>
+    </tr>
+
+
+
+
+  </table>
+
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div>
+<!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown.-->
+</div>
+<h1 id="eforms">eForms</h1>
+<p>For a full overview of the OH eForms data model, be sure to view the <a href="https://ehealthontario.atlassian.net/wiki/spaces/~62963d75e540870069662edb/pages/4847796613/eForms+Data+Model#3.-Provincial-Data-Model">eForms Confluence Page</a></p>
+
+<p><img src="eForms-DataModel.png" alt="eFormsData Model" /></p>
+
+<h2 id="steps-to-publish-the-eforms-fsh-implementation-guide">Steps to Publish the eForms FSH Implementation Guide</h2>
+<p>The process of publishing the eForms IG  involves the following steps, orchestrated through command-line scripts included in FSH project templates</p>
+
+<p><img src="FSH.png" alt="FHIR Overview" /></p>
+
+<h3 id="project-setup">Project Setup:</h3>
+<p>A standard FSH project is structured with specific folders :</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">input/fsh</code> for FSH files,</li>
+  <li><code class="language-plaintext highlighter-rouge">input/pagecontent</code> for narrative content</li>
+  <li><code class="language-plaintext highlighter-rouge">sushi-config.yaml</code> for  configuration.</li>
+</ul>
+
+<p>This is the default strucuture since this project was initialized via <code class="language-plaintext highlighter-rouge">sushi --init</code>.</p>
+
+<p>##Updating the IG Publisher
+The first step before publishing is always to download have the latest version of the HL7 FHIR IG Publisher.  Sushi provides a script to help:</p>
+
+<ul>
+  <li>On Windows, run: <code class="language-plaintext highlighter-rouge">_updatePublisher.bat</code></li>
+  <li>On macOS or Linux, run: <code class="language-plaintext highlighter-rouge">./_updatePublisher.sh</code></li>
+</ul>
+
+<p>This script downloads the necessary Java archive (.jar) file for the publisher.</p>
+
+<h2 id="generating-fhir-resources-with-sushi">Generating FHIR Resources with SUSHI:</h2>
+<p>The next step is to compile the FSH files into standard FHIR JSON resources. SUSHI handles this translation.</p>
+
+<p><code class="language-plaintext highlighter-rouge">sushi build .</code></p>
+
+<h2 id="running-the-ig-publisher">Running the IG Publisher:</h2>
+<p>Once the FSH files have been "sushied," you can invoke the IG Publisher to build the complete Implementation Guide. This is also typically done via a script:</p>
+
+<ul>
+  <li>On Windows: <code class="language-plaintext highlighter-rouge">_genonce.bat</code></li>
+  <li>On macOS or Linux: <code class="language-plaintext highlighter-rouge">./_genonce.sh</code></li>
+</ul>
+
+<p>This script executes the Java IG Publisher, pointing it to the generated FHIR resources and other input files. The publisher then performs a number of tasks, including validation, terminology expansion, and rendering of the HTML output.</p>
+
+<h2 id="reviewing-the-output">Reviewing the Output:</h2>
+<p>The generated Implementation Guide will be located in the <code class="language-plaintext highlighter-rouge">output/</code> directory of this project. Open the <code class="language-plaintext highlighter-rouge">index.html</code> file in this directory in a web browser to review the published IG.</p>
+
+<p><code class="language-plaintext highlighter-rouge">open -a "Google Chrome" index.html</code></p>
+
+<h2 id="distributing-the-eformsig-project-and-enabling-others-to-build">Distributing the eFormsIG Project and Enabling Others to Build</h2>
+<p>To allow other developers to build and publish this IG, you don't need to distribute the Java publisher itself. Instead, share the entire FSH project directory via git.</p>
+
+<p>The recipient of this project would then follow the same steps described above:</p>
+
+<ul>
+  <li>Clone this project repository.</li>
+  <li>Run the <code class="language-plaintext highlighter-rouge">_updatePublisher</code> script to download the IG Publisher.</li>
+  <li>Run the <code class="language-plaintext highlighter-rouge">_genonce</code> script to build the Implementation Guide locally.</li>
+</ul>
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="http://smileditialhealth.com/JoelPettis">Joel Pettis</a>.  Package fhir.ca.on.eforms#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Jul 7, 2025 23:34-0400">2025-07-07</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

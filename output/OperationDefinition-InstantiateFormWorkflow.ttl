@@ -1,0 +1,103 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://ontario.ca/fhir/eforms/OperationDefinition/InstantiateFormWorkflow> a fhir:OperationDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "InstantiateFormWorkflow"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: OperationDefinition InstantiateFormWorkflow</b></p><a name=\"InstantiateFormWorkflow\"> </a><a name=\"hcInstantiateFormWorkflow\"> </a><p>URL: [base]/PlanDefinition/[id]/$instantiateFormWorkflow</p><h3>Parameters</h3><table class=\"grid\"><tr><td><b>Use</b></td><td><b>Name</b></td><td><b>Scope</b></td><td><b>Cardinality</b></td><td><b>Type</b></td><td><b>Binding</b></td><td><b>Documentation</b></td></tr><tr><td>IN</td><td>subject</td><td/><td>1..1</td><td><a href=\"http://hl7.org/fhir/R4/references.html#Reference\">Reference</a> (<a href=\"StructureDefinition-EFormPatient.html\" title=\"http://ontario.ca/fhir/eforms/StructureDefinition/EFormPatient\">Patient Profile</a>)</td><td/><td><div><p>The individual who is the subject of the eForm. Sourced from CMS when possible.</p>\n</div></td></tr><tr><td>IN</td><td>requester</td><td/><td>0..1</td><td><a href=\"http://hl7.org/fhir/R4/references.html#Reference\">Reference</a> (<a href=\"StructureDefinition-EFormPractitionerRole.html\" title=\"http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole\">PractitionerRole Profile</a>, <a href=\"StructureDefinition-EFormOrganization.html\" title=\"http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization\">Organization Profile</a>)</td><td/><td><div><p>The Organization (or PractionerRole) <strong>placing</strong> the ServiceRequest.  They are the initiators of the eForms workflow</p>\n</div></td></tr><tr><td>IN</td><td>performer</td><td/><td>0..1</td><td><a href=\"http://hl7.org/fhir/R4/references.html#Reference\">Reference</a> (<a href=\"StructureDefinition-EFormPractitionerRole.html\" title=\"http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole\">PractitionerRole Profile</a>, <a href=\"StructureDefinition-EFormOrganization.html\" title=\"http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization\">Organization Profile</a>)</td><td/><td><div><p>The Organization (or PractionerRole) who will be <strong>assigned</strong> the ServiceRequest.  They will be required to complete (at <strong>least</strong> one) QuestionnaireResponse</p>\n</div></td></tr><tr><td>OUT</td><td>bundle</td><td/><td>1..1</td><td><a href=\"http://hl7.org/fhir/R4/bundle.html\">Bundle</a></td><td/><td><div><p>A Bundle of type <strong>collection</strong> containing the persisted ServiceRequest as the\nfirst entry and all associated Task resources as subsequent entries.<br/>\nClients should treat the bundle as a read‑only snapshot of the workflow that\nhas just been created.</p>\n</div></td></tr><tr><td>OUT</td><td>outcome</td><td/><td>0..1</td><td><a href=\"http://hl7.org/fhir/R4/operationoutcome.html\">OperationOutcome</a></td><td/><td><div><p>Optional OperationOutcome conveying warnings or informational messages.</p>\n</div></td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:url [ fhir:v "http://ontario.ca/fhir/OperationDefinition/instantiateFormWorkflow"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "InstantiateFormWorkflow"] ; # 
+  fhir:title [ fhir:v "[base]/PlanDefinition/[id]/$instantiateFormWorkflow"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:kind [ fhir:v "operation"] ; # 
+  fhir:date [ fhir:v "2025-07-04"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "Joel Pettis"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Joel Pettis" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://smileditialhealth.com/JoelPettis" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "joel.pettis@smiledigitalhealth.com" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Instantiates the eform Workflow by creating a ServiceRequesta as well as all required Tasks, \nas defined by the Plan Definition.activity[].  The Service `Request Questionnaire extension`\nprovides the reference(s) to the assoicated Quesstionnaires. \n\n\nThe operation **persists** all resources derived from the associate \nPaln Definition in the Repository and then returns a\n**collection** Bundle snapshot (plus an optional OperationOutcome)."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166:-2"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CA-ON" ] ;
+       fhir:display [ fhir:v "Ontario" ]
+     ] )
+  ] ) ; # 
+  fhir:code [ fhir:v "instantiateFormWorkflow"] ; # 
+  fhir:resource ( [ fhir:v "PlanDefinition"] ) ; # 
+  fhir:system [ fhir:v false] ; # 
+  fhir:type [ fhir:v false] ; # 
+  fhir:instance [ fhir:v true] ; # 
+  fhir:parameter ( [
+     fhir:name [ fhir:v "subject" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v 1 ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The individual who is the subject of the eForm. Sourced from CMS when possible. " ] ;
+     fhir:type [ fhir:v "Reference" ] ;
+     fhir:targetProfile ( [
+       fhir:v "http://ontario.ca/fhir/eforms/StructureDefinition/EFormPatient"^^xsd:anyURI ;
+       fhir:link <http://ontario.ca/fhir/eforms/StructureDefinition/EFormPatient>
+     ] )
+  ] [
+     fhir:name [ fhir:v "requester" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v 0 ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The Organization (or PractionerRole) __placing__ the ServiceRequest.  They are the initiators of the eForms workflow" ] ;
+     fhir:type [ fhir:v "Reference" ] ;
+     fhir:targetProfile ( [
+       fhir:v "http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole"^^xsd:anyURI ;
+       fhir:link <http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole>
+     ] [
+       fhir:v "http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization"^^xsd:anyURI ;
+       fhir:link <http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization>
+     ] )
+  ] [
+     fhir:name [ fhir:v "performer" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v 0 ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The Organization (or PractionerRole) who will be __assigned__ the ServiceRequest.  They will be required to complete (at __least__ one) QuestionnaireResponse" ] ;
+     fhir:type [ fhir:v "Reference" ] ;
+     fhir:targetProfile ( [
+       fhir:v "http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole"^^xsd:anyURI ;
+       fhir:link <http://ontario.ca/fhir/eforms/StructureDefinition/EFormPractitionerRole>
+     ] [
+       fhir:v "http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization"^^xsd:anyURI ;
+       fhir:link <http://ontario.ca/fhir/eforms/StructureDefinition/EFormOrganization>
+     ] )
+  ] [
+     fhir:name [ fhir:v "bundle" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v 1 ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "A Bundle of type **collection** containing the persisted ServiceRequest as the\nfirst entry and all associated Task resources as subsequent entries.  \nClients should treat the bundle as a read‑only snapshot of the workflow that\nhas just been created." ] ;
+     fhir:type [ fhir:v "Bundle" ]
+  ] [
+     fhir:name [ fhir:v "outcome" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v 0 ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "Optional OperationOutcome conveying warnings or informational messages." ] ;
+     fhir:type [ fhir:v "OperationOutcome" ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

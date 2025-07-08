@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Artifacts Summary - Ontario Health eForms Implementation Guide v0.1.0</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"2"}
+    h3,h4,h5,h6{--heading-prefix:"2.0"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+
+        <div id="ig-status">
+          <p><span style="font-size:12pt;font-weight:bold">Ontario Health eForms Implementation Guide</span>
+            <br/>
+            <span style="display:inline-block;">0.1.0 - ci-build
+
+
+
+  <span title="">CA-ON</span>
+
+
+            </span>
+          </p>
+        </div>
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li>
+    <a href="artifacts.html">FHIR Artifacts</a>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Artifacts Summary</b></li>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  <!--ReleaseHeader--><p id="publish-box">Ontario Health eForms Implementation Guide - Local Development build (v0.1.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='http://ontario.ca/fhir/eforms/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+  <h2>Artifacts Summary</h2>
+  
+  
+  
+  <!--DO NOT EDIT THIS FILE - It is generated by https://github.com/HL7/ig-template-base/blob/master/scripts/createArtifactSummary.xslt and any changes made will be overwritten--><div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://hl7.org/fhir"
+     xmlns:html="http://www.w3.org/1999/xhtml"
+     class="markdown-toc">
+   <p>Contents:</p>
+   <ul>
+      <li>
+         <a href="#1">Behavior: Operation Definitions</a>
+      </li>
+      <li>
+         <a href="#2">Structures: Resource Profiles</a>
+      </li>
+      <li>
+         <a href="#3">Structures: Extension Definitions</a>
+      </li>
+      <li>
+         <a href="#4">Terminology: Value Sets</a>
+      </li>
+      <li>
+         <a href="#5">Terminology: Code Systems</a>
+      </li>
+   </ul>
+</div>
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://hl7.org/fhir"
+     xmlns:html="http://www.w3.org/1999/xhtml">
+   <p>This page provides a list of the FHIR artifacts defined as part of this implementation guide.</p>
+   <a name="1"> </a>
+   <h3>Behavior: Operation Definitions </h3>
+    <p>These are custom operations that can be supported by and/or invoked by systems conforming to this implementation guide.</p>
+<table class="grid">
+      <col style="width:20%"/>
+      <tbody>
+         <tr>
+            <td style="column-width:30%">
+               <a href="OperationDefinition-InstantiateFormWorkflow.html"
+                  title="OperationDefinition/InstantiateFormWorkflow">[base]/PlanDefinition/[id]/$instantiateFormWorkflow</a>
+            </td>
+            <td>
+<p>Instantiates the eform Workflow by creating a ServiceRequesta as well as all required Tasks, 
+as defined by the Plan Definition.activity[].  The Service <code class="language-plaintext highlighter-rouge">Request Questionnaire extension</code>
+provides the reference(s) to the assoicated Quesstionnaires.</p>
+
+<p>The operation <strong>persists</strong> all resources derived from the associate 
+Paln Definition in the Repository and then returns a
+<strong>collection</strong> Bundle snapshot (plus an optional OperationOutcome).</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="OperationDefinition-TransitionWorkflow.html"
+                  title="OperationDefinition/TransitionWorkflow">[base]/ServiceRequest/[id]/$transitionWorkflow</a>
+            </td>
+            <td>
+<p>Instance-level operation on ServiceRequest that changes the businessStatus
+extension (eForms workflow state) and updates associated Task resources.</p>
+</td>
+         </tr>
+      </tbody>
+   </table>
+   <a name="2"> </a>
+   <h3>Structures: Resource Profiles </h3>
+    <p>These define constraints on FHIR resources for systems conforming to this implementation guide.</p>
+<table class="grid">
+      <col style="width:20%"/>
+      <tbody>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormCommunication.html"
+                  title="StructureDefinition/EFormCommunication">Communication Profile</a>
+            </td>
+            <td>
+<p>Communication Profile for OH eForms, based on the R4 version.</p>
+
+<p>Notifications, messages, or other communications related to the eForm workflow 
+(e.g., <code class="language-plaintext highlighter-rouge">Form X has been assigned to you, A comment was added to Form Y</code>).</p>
+
+<p>A new Communication resource will be generated to capture the Bi-Directional Communication requirement.</p>
+
+<p>There will be a Subscription Resource which will generate a Subscription each time
+a Communication is saved in a specific state (proposal: in-progress or completed )</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormDocumentReference.html"
+                  title="StructureDefinition/EFormDocumentReference">Document Reference Profile</a>
+            </td>
+            <td>
+<p>DocumentReference Profile for OH eForms, based on the R4 version.
+Stores metadata about an attachment that was uploaded to the OTN file service.<br />
+This is a valueReference in an item in the QuestionnaireResponse.</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormOrganization.html"
+                  title="StructureDefinition/EFormOrganization">Organization Profile</a>
+            </td>
+            <td>
+<p>Organization Profile for OH eForms, based on the R4 version.</p>
+
+<p>The Organization can be referenced as a Form Initiator, a Form Owner or a Notificaiton Recipient</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormPatient.html"
+                  title="StructureDefinition/EFormPatient">Patient Profile</a>
+            </td>
+            <td>
+<p>Patient Profile for OH eForms, based on the R4 version.</p>
+
+<p>The Patient represents the individual who is the subject of the eForm.<br />
+This information is retrieved from CMS.</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormPlanDefinition.html"
+                  title="StructureDefinition/EFormPlanDefinition">Plan Definition Profile</a>
+            </td>
+            <td>
+<p>Plan Definition Profile for OH eForms, based on the R4 version.</p>
+
+<p>The Plan Definition represents the Form and Workflow Template. 
+It defines a multi-step process in a shareable and executable way
+that represents a standard definition for the workflow and composite forms, 
+if applicable.  It acts as a manifest, listing all the modular components such as
+(Questionnaires, Tasks and Organizaiton</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormPractitionerRole.html"
+                  title="StructureDefinition/EFormPractitionerRole">PractitionerRole Profile</a>
+            </td>
+            <td>
+<p>PractitionerRole Profile for OH eForms, based on the R4 version.</p>
+
+<p>The PractitionerRole represents a specific set of roles at an Organization,<br />
+referenced as a Form Initiator, a Form Owner or a Notificaiton Recipient</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormProvenance.html"
+                  title="StructureDefinition/EFormProvenance">Provenance Profile</a>
+            </td>
+            <td>
+<p>Provenance Profile for OH eForms, based on the R4 version.</p>
+
+<p>The Provenance resource is the immutable audit trail of significant events. 
+A new Provenance resource must be created for every significant business action 
+(e.g., form creation, submission, revision, status change, revocation). 
+It meticulously records who did what, when they did it, and to which specific version
+ of a resource the action was applied.</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormQuestionnaire.html"
+                  title="StructureDefinition/EFormQuestionnaire">Questionnaire Profile</a>
+            </td>
+            <td>
+<p>Questionnaire Profile for OH eForms which extends sdc-questionnaire.</p>
+
+<p>Requires the assemble-expectation extensions wiith the expectation that all will beindependent. 
+The assemble-expectation SHALL either be <code class="language-plaintext highlighter-rouge">independent-root-or-child</code> to indicate it is a root Questionnaires, 
+or <code class="language-plaintext highlighter-rouge">independent-child</code> for all child Questionnaires</p>
+
+<p>One or more Questionnaires comprise the template itself, containing all the questions, 
+answer options, and structure. Questionnaires may be assembled from other sub-Questionnaires 
+utilizing FHIR’s Structured Data Capture’s Modular Forms.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">sub-questionnaire</code> is utilized to indicate that the display item on which this 
+extension appears should be replaced with the referenced Questionnaire</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormQuestionnaireResponse.html"
+                  title="StructureDefinition/EFormQuestionnaireResponse">Questionnaire Response Profile</a>
+            </td>
+            <td>
+<p>QuestionnaireResponse Profile for OH eForms which extends sdc-QuestionnaireResponse.</p>
+
+<p>This Resource represents a completed (or partially completed) eForm, 
+containing the patient's or practitioner's answers 
+to the questions from the Questionnaire.</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormsServiceRequest.html"
+                  title="StructureDefinition/EFormsServiceRequest">Service Request Profile</a>
+            </td>
+            <td>
+<p>Service Request Profile for OH eForms which extends sdc-service-request.
+Adds some additional extensions to be described &lt;&lt;TBD&gt;&gt;</p>
+
+<p>Utilized in Request-based solicitation as defined by SDC, this resource is the initial trigger
+for the entire workflow.</p>
+
+<p>A  ServiceRequest is created by the system once the PlanDefinition is selected.</p>
+
+<p>When the ServiceRequest is created, the system will generate a corresponding Task(s) 
+and to see fulfillment of the request by generating and populating the QuestionnaireResponse resources.</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormSubscription.html"
+                  title="StructureDefinition/EFormSubscription">Subscription Profile</a>
+            </td>
+            <td>
+<p>Subscription Profile for OH eForms, based on the R4 version.</p>
+
+<p>A Subscription is a publish-subscribe (pub/sub) mechanism built into the FHIR specification.
+Subscriptions are defined using the Subscription resource, which specifies what type of data
+is being subscribed to and how the recipient should be notified.</p>
+
+<p><code class="language-plaintext highlighter-rouge">status</code> - When a Subscription is created by a client, it should have a status of requested. Smile CDR will process this Subscription, and if it is valid, the status will automatically be changed to active, meaning that the Subscription is now being processed.
+<code class="language-plaintext highlighter-rouge">criteria</code> - This is a FHIR search query URL that will be used to determine which resources apply to the Subscription. These resources will trigger a notification when they change. See Criteria below for more information.
+<code class="language-plaintext highlighter-rouge">channel.type - This is the mechanism for delivery, such as rest-hook, websocket, email, sms, or message. See Channel Types for more information.
+</code>channel.endpoint<code class="language-plaintext highlighter-rouge"> - For channel types that require the server to initiate a connection to the client, this is the URL of the endpoint to which the server should connect.
+</code>channel.payload<code class="language-plaintext highlighter-rouge"> - This is the MIME type encoding to use (e.g. application/fhir+json for JSON data).
+</code>channel.extension` - Providing an extension allows finer control of subscription handling. Some extensions are channel specific, while others are used to define retry handling.</p>
+
+<p>With Subscriptions enabled, Smile creates a Matching Queue and sends all created/updated 
+QuestionnaireResponse or Communication resources to that queue. This queue is drained by a 
+Subscription Matching module. The Subscription Matcher module uses its FHIR Storage module 
+to retrieve two resource types required for subscription matching: Subscription and SearchParameter. 
+The Subscription Matcher module maintains in-memory caches of both of these resources that it updates 
+from its FHIR Storage module every 60 seconds.</p>
+
+<p>In the requirements, eForms is required to send email notifications whenever a 
+QuestionnaireResponse or Communication Resource is submitted by the form filler to the FHIR 
+Repository.  While Smile does offer the ability to trigger email notifications via smtp, OH 
+has a requirement that their AWS Simple Email Service (SES) must be used in order to send notifications. 
+In addition to notifications, Subscriptions will also be utilized to trigger the integration with 
+the OH ObjectStore</p>
+
+<p>AWS SES Delivery - When an QuestionnaireResponse or Communication resource is submitted 
+and the subscription is triggered in the FHIR Server, Smile will trigger a RESTful API call to the
+AWS SES API.</p>
+
+<p>Object Store Delivery - This Subscription class will automatically invoke an SDC extraction by invoking the QuestionnaireResponse/$extraction operation which will convert the matched QuestionnaireResponse resource into a MessageBundle as defined by the ObjectStore Implementation Guide (IG).</p>
+
+<p>A custom Subscription Delivery class is invoked whenever the matching criteria defined in the 
+Subscription Resource for Object Store integration.</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-EFormsTaskProfile.html"
+                  title="StructureDefinition/EFormsTaskProfile">Task Profile</a>
+            </td>
+            <td>
+<p>Task Profile for OH eForms which extends sdc-task.
+Adds the standard <strong>task-replaces</strong> extension so a new Task can
+point to the Task(s) it supersedes.</p>
+
+<p>The task is utilized as a central workflow management resource.
+It tracks the work item of getting a specific eForm completed. It includes custom statuses status,
+ who requested it, and who is currently assigned to work on it, and any communication between parties.</p>
+</td>
+         </tr>
+      </tbody>
+   </table>
+   <a name="3"> </a>
+   <h3>Structures: Extension Definitions </h3>
+    <p>These define constraints on FHIR data types for systems conforming to this implementation guide.</p>
+<table class="grid">
+      <col style="width:20%"/>
+      <tbody>
+         <tr>
+            <td style="column-width:30%">
+               <a href="StructureDefinition-businessStatus.html"
+                  title="StructureDefinition/businessStatus">OH eForms Business Status Extension paralleling Task.businessStatus</a>
+            </td>
+            <td>
+<p>Indicates the business (workflow) status of a ServiceRequest, paralleling Task.businessStatus.</p>
+</td>
+         </tr>
+      </tbody>
+   </table>
+   <a name="4"> </a>
+   <h3>Terminology: Value Sets </h3>
+    <p>These define sets of codes used by systems conforming to this implementation guide.</p>
+<table class="grid">
+      <col style="width:20%"/>
+      <tbody>
+         <tr>
+            <td style="column-width:30%">
+               <a href="ValueSet-task-code.html" title="ValueSet/task-code">OH eForms Task Code ValueSet</a>
+            </td>
+            <td>
+<p>Allowed codes for <code class="language-plaintext highlighter-rouge">Task.code</code> in the eForms implementation guide.
+Combines base FHIR Task codes, SDC codes, and eForms-specific codes.</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="ValueSet-business-status.html" title="ValueSet/business-status">eForms Business Status ValueSet</a>
+            </td>
+            <td>
+<p>Permitted values for the <code class="language-plaintext highlighter-rouge">businessStatus</code> extension on eForms ServiceRequest
+and Task resources.</p>
+</td>
+         </tr>
+      </tbody>
+   </table>
+   <a name="5"> </a>
+   <h3>Terminology: Code Systems </h3>
+    <p>These define new code systems used by systems conforming to this implementation guide.</p>
+<table class="grid">
+      <col style="width:20%"/>
+      <tbody>
+         <tr>
+            <td style="column-width:30%">
+               <a href="CodeSystem-task-code.html" title="CodeSystem/task-code">OH eForms Task Code System</a>
+            </td>
+            <td>
+<p>Additional workflow codes used by eForms tasks.</p>
+</td>
+         </tr>
+         <tr>
+            <td style="column-width:30%">
+               <a href="CodeSystem-business-status-cs.html"
+                  title="CodeSystem/business-status-cs">eForms Business Status CodeSystem</a>
+            </td>
+            <td>
+<p>Codes representing the eForms workflow states that appear in the
+<code class="language-plaintext highlighter-rouge">businessStatus</code> extension on ServiceRequest and Task.</p>
+</td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="http://smileditialhealth.com/JoelPettis">Joel Pettis</a>.  Package fhir.ca.on.eforms#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Mon, Jul 7, 2025 23:34-0400">2025-07-07</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

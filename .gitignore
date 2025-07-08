@@ -9,7 +9,6 @@
 *~
 
 # FHIR Publisher output directory
-output/
 temp/
 template/
 input-cache/

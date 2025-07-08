@@ -1,0 +1,58 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "task-code",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem task-code</b></p><a name=\"task-code\"> </a><a name=\"hctask-code\"> </a><p>This  code system <code>http://ontario.ca/fhir/eforms/CodeSystem/task-code</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">complete-section<a name=\"task-code-complete-section\"> </a></td><td>Complete Questionnaire Response Section</td></tr><tr><td style=\"white-space:nowrap\">amend-section<a name=\"task-code-amend-section\"> </a></td><td>Amend Questionnaire Response Section</td></tr></table></div>"
+  },
+  "url" : "http://ontario.ca/fhir/eforms/CodeSystem/task-code",
+  "version" : "0.1.0",
+  "name" : "EFormsTaskCode",
+  "title" : "OH eForms Task Code System",
+  "status" : "active",
+  "date" : "2025-07-07T23:32:55-04:00",
+  "publisher" : "Joel Pettis",
+  "contact" : [{
+    "name" : "Joel Pettis",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://smileditialhealth.com/JoelPettis"
+    },
+    {
+      "system" : "email",
+      "value" : "joel.pettis@smiledigitalhealth.com"
+    }]
+  }],
+  "description" : "Additional workflow codes used by eForms tasks.",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166:-2",
+      "code" : "CA-ON",
+      "display" : "Ontario"
+    }]
+  }],
+  "content" : "complete",
+  "count" : 2,
+  "concept" : [{
+    "code" : "complete-section",
+    "display" : "Complete Questionnaire Response Section",
+    "designation" : [{
+      "use" : {
+        "system" : "http://terminology.hl7.org/CodeSystem/designation-usage",
+        "code" : "display"
+      },
+      "value" : "Complete Questionnaire Response Section"
+    }]
+  },
+  {
+    "code" : "amend-section",
+    "display" : "Amend Questionnaire Response Section",
+    "designation" : [{
+      "use" : {
+        "system" : "http://terminology.hl7.org/CodeSystem/designation-usage",
+        "code" : "display"
+      },
+      "value" : "Amend Questionnaire Response Section"
+    }]
+  }]
+}

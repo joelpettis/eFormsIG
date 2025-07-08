@@ -1,0 +1,74 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://ontario.ca/fhir/eforms/CodeSystem/business-status-cs> a fhir:CodeSystem ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "business-status-cs"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem business-status-cs</b></p><a name=\"business-status-cs\"> </a><a name=\"hcbusiness-status-cs\"> </a><p>This  code system <code>http://ontario.ca/fhir/eforms/CodeSystem/business-status</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">draft<a name=\"business-status-cs-draft\"> </a></td><td>Draft</td><td>The form is being prepared and is not yet submitted.</td></tr><tr><td style=\"white-space:nowrap\">submitted<a name=\"business-status-cs-submitted\"> </a></td><td>Submitted</td><td>The form package has been delivered for processing.</td></tr><tr><td style=\"white-space:nowrap\">request-info<a name=\"business-status-cs-request-info\"> </a></td><td>Request for Information</td><td>Additional data has been requested.</td></tr><tr><td style=\"white-space:nowrap\">processed<a name=\"business-status-cs-processed\"> </a></td><td>Processed</td><td>The submission has been accepted and processed.</td></tr><tr><td style=\"white-space:nowrap\">completed<a name=\"business-status-cs-completed\"> </a></td><td>Completed</td><td>All steps are finished; no further action required.</td></tr><tr><td style=\"white-space:nowrap\">revoked<a name=\"business-status-cs-revoked\"> </a></td><td>Revoked</td><td>The request has been cancelled or withdrawn.</td></tr><tr><td style=\"white-space:nowrap\">error<a name=\"business-status-cs-error\"> </a></td><td>Error</td><td>Processing failed or an unrecoverable error occurred.</td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:url [ fhir:v "http://ontario.ca/fhir/eforms/CodeSystem/business-status"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "EFormsBusinessStatusCS"] ; # 
+  fhir:title [ fhir:v "eForms Business Status CodeSystem"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:date [ fhir:v "2025-07-07T23:32:55-04:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "Joel Pettis"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Joel Pettis" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://smileditialhealth.com/JoelPettis" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "joel.pettis@smiledigitalhealth.com" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Codes representing the eForms workflow states that appear in the\n`businessStatus` extension on ServiceRequest and Task."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166:-2"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CA-ON" ] ;
+       fhir:display [ fhir:v "Ontario" ]
+     ] )
+  ] ) ; # 
+  fhir:content [ fhir:v "complete"] ; # 
+  fhir:count [ fhir:v "7"^^xsd:nonNegativeInteger] ; # 
+  fhir:concept ( [
+     fhir:code [ fhir:v "draft" ] ;
+     fhir:display [ fhir:v "Draft" ] ;
+     fhir:definition [ fhir:v "The form is being prepared and is not yet submitted." ]
+  ] [
+     fhir:code [ fhir:v "submitted" ] ;
+     fhir:display [ fhir:v "Submitted" ] ;
+     fhir:definition [ fhir:v "The form package has been delivered for processing." ]
+  ] [
+     fhir:code [ fhir:v "request-info" ] ;
+     fhir:display [ fhir:v "Request for Information" ] ;
+     fhir:definition [ fhir:v "Additional data has been requested." ]
+  ] [
+     fhir:code [ fhir:v "processed" ] ;
+     fhir:display [ fhir:v "Processed" ] ;
+     fhir:definition [ fhir:v "The submission has been accepted and processed." ]
+  ] [
+     fhir:code [ fhir:v "completed" ] ;
+     fhir:display [ fhir:v "Completed" ] ;
+     fhir:definition [ fhir:v "All steps are finished; no further action required." ]
+  ] [
+     fhir:code [ fhir:v "revoked" ] ;
+     fhir:display [ fhir:v "Revoked" ] ;
+     fhir:definition [ fhir:v "The request has been cancelled or withdrawn." ]
+  ] [
+     fhir:code [ fhir:v "error" ] ;
+     fhir:display [ fhir:v "Error" ] ;
+     fhir:definition [ fhir:v "Processing failed or an unrecoverable error occurred." ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

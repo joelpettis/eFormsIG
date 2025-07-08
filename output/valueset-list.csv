@@ -1,0 +1,3 @@
+URL,Version,Status,OIDs,Name,Title,Descriptino,Uses,Used,Sources
+http://ontario.ca/fhir/eforms/ValueSet/business-status,0.1.0,active,,EFormsBusinessStatusVS,eForms Business Status ValueSet,"Permitted values for the `businessStatus` extension on eForms ServiceRequest and Task resources.",,"Internal"
+http://ontario.ca/fhir/eforms/ValueSet/task-code,0.1.0,active,,EFormsTaskCodeVS,OH eForms Task Code ValueSet,"Allowed codes for `Task.code` in the eForms implementation guide. Combines base FHIR Task codes, SDC codes, and eForms-specific codes.",,"hl7.fhir.uv.sdc,Internal,hl7.fhir.r4.core"

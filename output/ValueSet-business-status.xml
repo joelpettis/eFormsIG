@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="business-status"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ValueSet business-status</b></p><a name="business-status"> </a><a name="hcbusiness-status"> </a><ul><li>Include all codes defined in <a href="CodeSystem-business-status-cs.html"><code>http://ontario.ca/fhir/eforms/CodeSystem/business-status</code></a></li></ul></div>
+  </text>
+  <url value="http://ontario.ca/fhir/eforms/ValueSet/business-status"/>
+  <version value="0.1.0"/>
+  <name value="EFormsBusinessStatusVS"/>
+  <title value="eForms Business Status ValueSet"/>
+  <status value="active"/>
+  <date value="2025-07-07T23:32:55-04:00"/>
+  <publisher value="Joel Pettis"/>
+  <contact>
+    <name value="Joel Pettis"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://smileditialhealth.com/JoelPettis"/>
+    </telecom>
+    <telecom>
+      <system value="email"/>
+      <value value="joel.pettis@smiledigitalhealth.com"/>
+    </telecom>
+  </contact>
+  <description value="Permitted values for the `businessStatus` extension on eForms ServiceRequest&#xA;and Task resources."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166:-2"/>
+      <code value="CA-ON"/>
+      <display value="Ontario"/>
+    </coding>
+  </jurisdiction>
+  <compose>
+    <include>
+      <system value="http://ontario.ca/fhir/eforms/CodeSystem/business-status"/>
+    </include>
+  </compose>
+</ValueSet>

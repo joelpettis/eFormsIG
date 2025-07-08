@@ -1,0 +1,33 @@
+{
+  "codeSystems" : [
+    {
+      "url" : "http://ontario.ca/fhir/eforms/ValueSet/business-status",
+      "version" : "0.1.0",
+      "status" : "active",
+      "name" : "EFormsBusinessStatusVS",
+      "title" : "eForms Business Status ValueSet",
+      "description" : "Permitted values for the `businessStatus` extension on eForms ServiceRequest\nand Task resources.",
+      "systems" : ["http://ontario.ca/fhir/eforms/CodeSystem/business-status"],
+      "uses" : {
+      },
+      "OperationDefinition-TransitionWorkflow.html" : "[base]/ServiceRequest/[id]/$transitionWorkflow",
+      "StructureDefinition-businessStatus.html" : "OH eForms Business Status Extension paralleling Task.businessStatus"
+    },
+    {
+      "url" : "http://ontario.ca/fhir/eforms/ValueSet/task-code",
+      "version" : "0.1.0",
+      "status" : "active",
+      "name" : "EFormsTaskCodeVS",
+      "title" : "OH eForms Task Code ValueSet",
+      "description" : "Allowed codes for `Task.code` in the eForms implementation guide.\nCombines base FHIR Task codes, SDC codes, and eForms-specific codes.",
+      "systems" : [
+        "http://hl7.org/fhir/uv/sdc/CodeSystem/temp",
+        "http://ontario.ca/fhir/eforms/CodeSystem/task-code",
+        "http://hl7.org/fhir/CodeSystem/task-code"
+      ],
+      "uses" : {
+      },
+      "StructureDefinition-EFormsTaskProfile.html" : "Task Profile"
+    }
+  ]
+}
