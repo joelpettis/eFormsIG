@@ -14,3 +14,8 @@ Alias: $SDCQuestionnaireResponseCanonical   = http://hl7.org/fhir/uv/sdc/Structu
 Alias: $TaskReplacesExtCanonical            = http://hl7.org/fhir/StructureDefinition/task-replaces //Task extension
 Alias: $QuestionnaireSubExtCanonical        = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire
 Alias: $temp                                = http://hl7.org/fhir/uv/sdc/CodeSystem/temp
+
+//Terminology
+Alias: $EFormsTaskCodeCS                    = http://ontario.ca/fhir/eforms/CodeSystem/task-code
+Alias: $EFormsBusinessStatusCS              = http://ontario.ca/fhir/eforms/CodeSystem/business-status
+Alias: $EFormsBusinessStatusVS              = http://ontario.ca/fhir/eforms/ValueSet/business-status
