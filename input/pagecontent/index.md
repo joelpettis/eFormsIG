@@ -1,13 +1,18 @@
 # eForms
-For a full overview of the OH eForms data model, be sure to view the [eForms Confluence Page](https://ehealthontario.atlassian.net/wiki/spaces/~62963d75e540870069662edb/pages/4847796613/eForms+Data+Model#3.-Provincial-Data-Model)
+For a full overview of the OH eForms data model, be sure to view the [eForms Data Model Confluence Page](https://ehealthontario.atlassian.net/wiki/spaces/~62963d75e540870069662edb/pages/4847796613/eForms+Data+Model#3.-Provincial-Data-Model)
 
 ![eFormsData Model](eForms-DataModel.png)
 
+## State Model
+For a full overview of the OH State Model and Workflow processbe sure to view the [eForms Workflow States and Transitions Confluence Page]https://ehealthontario.atlassian.net/wiki/spaces/~62963d75e540870069662edb/pages/4828790792/eForms+Workflow+Process+Integration+and+Authorization
+
+![eForms Workflow Model](workflow-states.png)
 
 ## Steps to Publish the eForms FSH Implementation Guide
 The process of publishing the eForms IG  involves the following steps, orchestrated through command-line scripts included in FSH project templates
 
 ![FHIR Overview](FSH.png)
+
 
 
 ### Project Setup: 
