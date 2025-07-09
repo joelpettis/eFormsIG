@@ -56,6 +56,14 @@ jobs:
       
       - name: Install SUSHI
         run: npm install -g fsh-sushi
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Install Jekyll
+        run: gem install --no-document jekyll -v "~> 4.3"
       
       - name: Make scripts executable
         run: |
