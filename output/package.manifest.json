@@ -1,7 +1,0 @@
-{
-  "version" : "0.1.0",
-  "fhirVersion" : ["4.0.1"],
-  "date" : "20250707233255",
-  "name" : "fhir.ca.on.eforms",
-  "jurisdiction" : "urn:iso:std:iso:3166:-2#CA-ON"
-}

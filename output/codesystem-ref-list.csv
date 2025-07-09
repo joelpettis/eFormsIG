@@ -1,5 +1,0 @@
-URL,Version,Status,OIDs,Name,Title,Description,Used
-http://hl7.org/fhir/CodeSystem/task-code,4.0.1,active,"2.16.840.1.113883.4.642.4.1397",TaskCode,Task Codes,"Codes indicating the type of action that is expected to be performed","ValueSet/task-code"
-http://hl7.org/fhir/uv/sdc/CodeSystem/temp,4.0.0-ballot,active,"2.16.840.1.113883.4.642.40.17.16.7",TemporaryCodes,Temporary SDC Codes,"Defines codes defined within the SDC implementation guide that are expected to migrate elsewhere in future releases","ValueSet/task-code"
-http://ontario.ca/fhir/eforms/CodeSystem/business-status,0.1.0,active,,EFormsBusinessStatusCS,eForms Business Status CodeSystem,"Codes representing the eForms workflow states that appear in the `businessStatus` extension on ServiceRequest and Task.","ValueSet/business-status"
-http://ontario.ca/fhir/eforms/CodeSystem/task-code,0.1.0,active,,EFormsTaskCode,OH eForms Task Code System,"Additional workflow codes used by eForms tasks.","ValueSet/task-code"
