@@ -1,5 +1,8 @@
 # Steps to Publish the eForms FSH Implementation Guide
-The process of publishing the eForms IG  involves the following steps, orchestrated through command-line scripts included in FSH project templates
+The process of publishing the eForms IG  involves the following steps, orchestrated through command-line scripts included in FSH project templates.  See the published [Implementation Guide](https://joelpettis.github.io/eFormsIG/)
+
+
+![Build Status](https://github.com/yourusername/yourrepo/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)
 
 ![FHIR Overview](input/images/FSH.png)
 

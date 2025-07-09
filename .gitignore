@@ -9,13 +9,12 @@
 *~
 
 # FHIR Publisher output directory
-temp/
-template/
-input-cache/
+/temp/
+/template/
+/input-cache/
+/fsh-generated/
+node_modules/
 *publisher.jar
 *.log
 snapshot-*
 coverage/
-
-# SUSHI generated files
-fsh-generated/

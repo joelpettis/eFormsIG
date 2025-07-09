@@ -21,8 +21,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
+  # Build and deploy job
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,6 +30,37 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      
+      - name: Cache SUSHI dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.fhir
+            ~/.m2
+            node_modules
+          key: ${{ runner.os }}-sushi-${{ hashFiles('**/package-lock.json', '**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-sushi-
+      
+      - name: Install SUSHI
+        run: npm install -g fsh-sushi
+      
+      - name: Make _genonce.sh executable
+        run: chmod +x ./_genonce.sh
+      
+      - name: Run SUSHI build
+        run: ./_genonce.sh
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -43,4 +74,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        
