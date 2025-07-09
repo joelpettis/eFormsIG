@@ -49,15 +49,21 @@ jobs:
             ~/.fhir
             ~/.m2
             node_modules
-          key: ${{ runner.os }}-sushi-${{ hashFiles('**/package-lock.json', '**/pom.xml') }}
+            input-cache
+          key: ${{ runner.os }}-sushi-${{ hashFiles('**/package-lock.json', '**/pom.xml', '**/sushi-config.yaml') }}
           restore-keys: |
             ${{ runner.os }}-sushi-
       
       - name: Install SUSHI
         run: npm install -g fsh-sushi
       
-      - name: Make _genonce.sh executable
-        run: chmod +x ./_genonce.sh
+      - name: Make scripts executable
+        run: |
+          chmod +x ./_genonce.sh
+          chmod +x ./_updatePublisher.sh
+      
+      - name: Download IG Publisher
+        run: ./_updatePublisher.sh
       
       - name: Run SUSHI build
         run: ./_genonce.sh

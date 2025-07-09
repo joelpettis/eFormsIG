@@ -13,6 +13,7 @@
 /template/
 /input-cache/
 /fsh-generated/
+/output/
 node_modules/
 *publisher.jar
 *.log
