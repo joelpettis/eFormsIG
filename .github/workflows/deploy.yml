@@ -75,25 +75,7 @@ jobs:
       
       - name: Run SUSHI build
         run: ./_genonce.sh
-      
-      - name: Check output directory
-        run: |
-          echo "Contents of current directory:"
-          ls -la
-          echo "Looking for output directories:"
-          find . -type d -name "*output*" -o -name "*publish*" -o -name "*site*" | head -10
-          echo "Contents of potential output directories:"
-          if [ -d "./output" ]; then
-            echo "Found ./output directory"
-            ls -la ./output
-          elif [ -d "./fsh-generated" ]; then
-            echo "Found ./fsh-generated directory"
-            ls -la ./fsh-generated
-          elif [ -d "./temp" ]; then
-            echo "Found ./temp directory"
-            ls -la ./temp
-          fi
-      
+            
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
