@@ -62,6 +62,9 @@ jobs:
           chmod +x ./_genonce.sh
           chmod +x ./_updatePublisher.sh
       
+      - name: Create input-cache directory
+        run: mkdir -p input-cache
+      
       - name: Download IG Publisher
         run: ./_updatePublisher.sh
       
