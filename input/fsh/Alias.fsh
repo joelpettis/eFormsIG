@@ -19,3 +19,5 @@ Alias: $temp                                = http://hl7.org/fhir/uv/sdc/CodeSys
 Alias: $EFormsTaskCodeCS                    = http://ontario.ca/fhir/eforms/CodeSystem/task-code
 Alias: $EFormsBusinessStatusCS              = http://ontario.ca/fhir/eforms/CodeSystem/business-status
 Alias: $EFormsBusinessStatusVS              = http://ontario.ca/fhir/eforms/ValueSet/business-status
+
+Alias: $assemble-expectation = http://hl7.org/fhir/StructureDefinition/assemble-expectation
