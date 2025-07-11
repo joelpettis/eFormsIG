@@ -362,7 +362,7 @@ paths:
             type: object
       responses:
         '200':
-          description: 	An update to an existing Communication bundle is submitted in order to invalidate an existing Communication. Returns the updated resource
+          description:   An update to an existing Communication bundle is submitted in order to invalidate an existing Communication. Returns the updated resource
           schema:
             type: object
         '400':
@@ -1273,7 +1273,7 @@ paths:
             type: object
       responses:
         '200':
-          description: 	An update to an existing DocumentReference bundle is submitted in order to invalidate an existing DocumentReference. Returns the updated resource
+          description:   An update to an existing DocumentReference bundle is submitted in order to invalidate an existing DocumentReference. Returns the updated resource
           schema:
             type: object
         '400':
@@ -2168,7 +2168,7 @@ paths:
             type: object
       responses:
         '200':
-          description: 	An update to an existing Organization bundle is submitted in order to invalidate an existing Organization. Returns the updated resource
+          description:   An update to an existing Organization bundle is submitted in order to invalidate an existing Organization. Returns the updated resource
           schema:
             type: object
         '400':
@@ -3041,7 +3041,7 @@ paths:
             type: object
       responses:
         '200':
-          description: 	An update to an existing Patient bundle is submitted in order to invalidate an existing Patient. Returns the updated resource
+          description:   An update to an existing Patient bundle is submitted in order to invalidate an existing Patient. Returns the updated resource
           schema:
             type: object
         '400':
@@ -3840,6 +3840,7 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
+    post:
       summary: Create a PlanDefinition Resource
       description: |
         This interaction creates a PlanDefinition resource based on the submitted data/body
@@ -3955,6 +3956,7 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
+    patch:
       summary: "instance-patch: Patch a PlanDefinition ID"
       parameters:
       - name: id
@@ -4817,7 +4819,7 @@ paths:
             type: object
       responses:
         '200':
-          description: 	An update to an existing PractitionerRole bundle is submitted in order to invalidate an existing PractitionerRole. Returns the updated resource
+          description:   An update to an existing PractitionerRole bundle is submitted in order to invalidate an existing PractitionerRole. Returns the updated resource
           schema:
             type: object
         '400':
@@ -5565,7 +5567,7 @@ paths:
             type: object
       responses:
         '200':
-          description: 	An update to an existing Provenance bundle is submitted in order to invalidate an existing Provenance. Returns the updated resource
+          description:   An update to an existing Provenance bundle is submitted in order to invalidate an existing Provenance. Returns the updated resource
           schema:
             type: object
         '400':
@@ -5977,22 +5979,22 @@ paths:
         This interaction searches for a list of published form templates
       operationId: questionnaireSearchByGet
       parameters:
-        - description: The questionnaire publication date	
+        - description: The questionnaire publication date  
           in: query
           name: date
           required: false
           type: string
-        - description: The name of the questionnaire	
+        - description: The name of the questionnaire  
           in: query
           name: name
           required: false
           type: string
-        - description: The description of the questionnaire	
+        - description: The description of the questionnaire  
           in: query
           name: description
           required: false
           type: string
-        - description: The status of the questionnaire	
+        - description: The status of the questionnaire  
           in: query
           name: status
           required: false
@@ -6210,7 +6212,7 @@ paths:
             type: object
       responses:
         '200':
-          description: 	An update to an existing Questionnaire bundle is submitted in order to invalidate an existing Questionnaire. Returns the updated resource
+          description:   An update to an existing Questionnaire bundle is submitted in order to invalidate an existing Questionnaire. Returns the updated resource
           schema:
             type: object
         '400':
@@ -6435,22 +6437,22 @@ paths:
       description: This interaction searches for Questionnaire Resources
       operationId: questionnaireSearchByPost
       parameters:
-        - description: The questionnaire publication date	
+        - description: The questionnaire publication date  
           in: formData
           name: date
           required: false
           type: string
-        - description: The name of the questionnaire	
+        - description: The name of the questionnaire  
           in: formData
           name: name
           required: false
           type: string
-        - description: The description of the questionnaire	
+        - description: The description of the questionnaire  
           in: formData
           name: description
           required: false
           type: string
-        - description: The status of the questionnaire	
+        - description: The status of the questionnaire  
           in: formData
           name: status
           required: false
@@ -6539,7 +6541,7 @@ paths:
           name: author
           required: false
           type: string
-        - description: 	When the QuestionnaireResponse was last changed
+        - description:   When the QuestionnaireResponse was last changed
           in: query
           name: authored
           required: false
@@ -6549,7 +6551,7 @@ paths:
           name: patient
           required: false
           type: string
-        - description: 	The Questionnaire Resource the answers are provided for
+        - description:   The Questionnaire Resource the answers are provided for
           in: query
           name: questionnaire
           required: false
@@ -6559,12 +6561,12 @@ paths:
           name: source
           required: false
           type: string
-        - description: The status of the QuestionnaireResponse	
+        - description: The status of the QuestionnaireResponse  
           in: query
           name: status
           required: false
           type: string
-        - description: The subject of the QuestionnaireResponse	
+        - description: The subject of the QuestionnaireResponse  
           in: query
           name: subject
           required: false
@@ -6770,7 +6772,7 @@ paths:
             type: object
       responses:
         '200':
-          description: 	An update to an existing QuestionnaireResponse bundle is submitted in order to invalidate an existing QuestionnaireResponse. Returns the updated resource
+          description:   An update to an existing QuestionnaireResponse bundle is submitted in order to invalidate an existing QuestionnaireResponse. Returns the updated resource
           schema:
             type: object
         '400':
@@ -7060,7 +7062,7 @@ paths:
           name: author
           required: false
           type: string
-        - description: 	When the QuestionnaireResponse was last changed
+        - description:   When the QuestionnaireResponse was last changed
           in: formData
           name: authored
           required: false
@@ -7070,7 +7072,7 @@ paths:
           name: patient
           required: false
           type: string
-        - description: 	The Questionnaire Resource the answers are provided for
+        - description:   The Questionnaire Resource the answers are provided for
           in: formData
           name: questionnaire
           required: false
@@ -7080,12 +7082,12 @@ paths:
           name: source
           required: false
           type: string
-        - description: The status of the QuestionnaireResponse	
+        - description: The status of the QuestionnaireResponse  
           in: formData
           name: status
           required: false
           type: string
-        - description: The subject of the QuestionnaireResponse	
+        - description: The subject of the QuestionnaireResponse  
           in: formData
           name: subject
           required: false
@@ -7511,51 +7513,51 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
-      responses:
-        '201':
-          description: A new ServiceRequest is submitted. Returns the created resource.
-          schema:
-            type: object
-        '400':
-          description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
-          schema:
-            type: object
-        '401':
-          description: Failed authentication
-          schema:
-            type: object
-        '403':
-          description: Failed authorization
-          schema:
-            type: object
-        '406':
-          description: The Accept header requested a format that the server does not support
-          schema:
-            type: object
-        '409':
-          description: Duplicate resource
-          schema:
-            type: object
-        '422':
-          description: Error, validation/business/semantically erroneous
-          schema:
-            type: object
-        '429':
-          description: Error, Too Many Requests
-          schema:
-            type: object
-        '500':
-          description: Error, Server internal error
-          schema:
-            type: object
-        '503':
-          description: Indicates that the services has been temporarily taken down (on purpose)
-          schema:
-            type: object
-        '504':
-          description: Downstream system(s) did not return timely response
-          schema:
-            type: object
+      # responses:
+      #   '201':
+      #     description: A new ServiceRequest is submitted. Returns the created resource.
+      #     schema:
+      #       type: object
+      #   '400':
+      #     description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
+      #     schema:
+      #       type: object
+      #   '401':
+      #     description: Failed authentication
+      #     schema:
+      #       type: object
+      #   '403':
+      #     description: Failed authorization
+      #     schema:
+      #       type: object
+      #   '406':
+      #     description: The Accept header requested a format that the server does not support
+      #     schema:
+      #       type: object
+      #   '409':
+      #     description: Duplicate resource
+      #     schema:
+      #       type: object
+      #   '422':
+      #     description: Error, validation/business/semantically erroneous
+      #     schema:
+      #       type: object
+      #   '429':
+      #     description: Error, Too Many Requests
+      #     schema:
+      #       type: object
+      #   '500':
+      #     description: Error, Server internal error
+      #     schema:
+      #       type: object
+      #   '503':
+      #     description: Indicates that the services has been temporarily taken down (on purpose)
+      #     schema:
+      #       type: object
+      #   '504':
+      #     description: Downstream system(s) did not return timely response
+      #     schema:
+      #       type: object
   /ServiceRequest/{id}:
     get:
       summary: Retrieve a ServiceRequest resources based on its ID
@@ -7615,6 +7617,7 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
+    patch:
       summary: "instance-patch: Patch a ServiceRequest ID"
       parameters:
       - name: id
@@ -8832,4 +8835,4 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
-
+            
