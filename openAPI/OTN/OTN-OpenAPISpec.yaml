@@ -1,0 +1,327 @@
+swagger: '2.0'
+schemes:
+  - https
+info:
+  description: >-
+    A DocumentReference resource is used to describe a document that is made available to a healthcare system. This resource does not have an endpoint and no HTTP operations are defined in this resource. Note that this resource only provides a link to a document in a document repository. This HL7 FHIR specification does not provide resources to upload and download files. This resource is always contained in a ReferralRequest resource.  
+  title: APIs for file upload / download
+  version: 2.0.0
+host: 'localhost:8080'
+basePath: /api/fhir
+paths:
+  /documents/{repoName}:
+    post:
+      description: >-
+        Get an upload URL to be used for uploading the actual file
+      summary: get upload file URL
+      operationId: getUploadFileUrl
+      tags:
+        - fileUpload
+      consumes:
+        - application/json
+        - application/fhir+json; charset=utf-8
+      produces:
+        - application/json
+        - application/fhir+json; charset=utf-8
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: >-
+            ONEID Token
+            see: https://ehealthontario.on.ca/en/standards/one-id-openid-connect-specification
+          required: true
+        - in: header
+          name: x-request-id
+          type: string
+          required: true
+        - in: header
+          name: x-GtwyTxid
+          type: string
+          required: true
+        - in: "body"
+          name: "body"
+          description: >-
+            object with one field representing file name
+            Example: { "fileName": "testfile.pdf" }
+          required: true
+          schema:
+            $ref: '#/definitions/File'
+        - name: "repoName"
+          in: "path"
+          description: >-
+            repo: the repository name / application name
+            Example: eforms
+          required: true
+          type: string
+
+      responses:
+        '200':
+          description: Operation Outcome
+          schema:
+            $ref: '#/definitions/FileResponse'
+        '400':
+          description: "Error, Validation"
+        '401':
+          description: "Error, Unauthorized"
+        '403':
+          description: "Error, Forbidden"
+        '500':
+          description: "Error, Server internal error"
+      security: []
+
+  /documents/{repoName}/{fileId}:
+    get:
+      description: >-
+        Get an upload URL to be used for downloading the file
+      summary: get download file URL
+      operationId: getDownloadFileUrl
+      tags:
+        - fileUpload
+      consumes:
+        - application/json
+        - application/fhir+json; charset=utf-8
+      produces:
+        - application/json
+        - application/fhir+json; charset=utf-8
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: >-
+            ONEID Token
+            see: https://ehealthontario.on.ca/en/standards/one-id-openid-connect-specification
+          required: true
+        - in: header
+          name: x-request-id
+          type: string
+          required: true
+        - in: header
+          name: x-GtwyTxid
+          type: string
+          required: true
+        - name: "repoName"
+          in: "path"
+          description: >-
+            repo: the repository name / application name
+            Example: eforms
+          required: true
+          type: string
+        - name: "fileId"
+          in: "path"
+          description: >-
+            fileId: the ID of the file to be returned
+            Example: 250016047
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        '200':
+          description: Operation Outcome
+          schema:
+            $ref: '#/definitions/FileResponse'
+        '400':
+          description: "Error, Validation"
+        '401':
+          description: "Error, Unauthorized"
+        '403':
+          description: "Error, Forbidden"
+        '500':
+          description: "Error, Server internal error"
+      security: []
+
+  /documents/{repoName}/labels:
+    post:
+      description: >-
+        Set one or more labels for a set of fileIds
+      summary: set labels
+      operationId: setLabels
+      tags:
+        - fileUpload
+      consumes:
+        - application/json; charset=utf-8
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: >-
+            ONEID Token
+            see: https://ehealthontario.on.ca/en/standards/one-id-openid-connect-specification
+          required: true
+        - in: header
+          name: x-request-id
+          type: string
+          required: true
+        - in: header
+          name: x-GtwyTxid
+          type: string
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            type: object
+          description: >-
+            object containing list of fileIds and list of labels to be set
+            Example: { "fileIds": ["275938316", "275938316" ], "labels": ["abc", "def"] }
+          required: true
+        - name: "repoName"
+          in: "path"
+          description: >-
+            repo: the repository name / application name
+            Example: eforms
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Object
+          schema:
+            type: object
+        '400':
+          description: "Error, Validation"
+        '401':
+          description: "Error, Unauthorized"
+        '403':
+          description: "Error, Forbidden"
+        '500':
+          description: "Error, Server internal error"
+      security: []
+
+    get:
+      description: >-
+        read labels for a number of fileIds
+      summary: read labels
+      operationId: readLabels
+      tags:
+        - fileUpload
+      consumes:
+        - application/json; charset=utf-8
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: >-
+            ONEID Token
+            see: https://ehealthontario.on.ca/en/standards/one-id-openid-connect-specification
+          required: true
+        - in: header
+          name: x-request-id
+          type: string
+          required: true
+        - in: header
+          name: x-GtwyTxid
+          type: string
+          required: true
+        - name: "repoName"
+          in: "path"
+          description: >-
+            repo: the repository name / application name
+            Example: eforms
+          required: true
+          type: string
+        - in: query
+          name: fileIds
+          description: >-
+            Example: fileIds=123,4567,88888
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Object 
+          schema:
+            type: object
+        '400':
+          description: "Error, Validation"
+        '401':
+          description: "Error, Unauthorized"
+        '403':
+          description: "Error, Forbidden"
+        '500':
+          description: "Error, Server internal error"
+      security: []
+
+    delete:
+      description: >-
+        delete specified labels for a number of fileIds
+      summary: delete labels
+      operationId: deleteLabels
+      tags:
+        - fileUpload
+      consumes:
+        - application/json; charset=utf-8
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: >-
+            ONEID Token
+            see: https://ehealthontario.on.ca/en/standards/one-id-openid-connect-specification
+          required: true
+        - in: header
+          name: x-request-id
+          type: string
+          required: true
+        - in: header
+          name: x-GtwyTxid
+          type: string
+          required: true
+        - name: "repoName"
+          in: "path"
+          description: >-
+            repo: the repository name / application name
+            Example: eforms
+          required: true
+          type: string
+        - in: query
+          name: fileIds
+          description: >-
+            Example: fileIds=123,4567,88888
+          type: string
+          required: true
+        - in: query
+          name: labels
+          description: >-
+            Example: labels=abc,def
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Object 
+          schema:
+            type: object
+        '400':
+          description: "Error, Validation"
+        '401':
+          description: "Error, Unauthorized"
+        '403':
+          description: "Error, Forbidden"
+        '500':
+          description: "Error, Server internal error"
+      security: []
+
+definitions:
+  File:
+    type: "object"
+    required: 
+    - "fileName"
+    properties:
+      fileName:
+        type: "string"
+  FileResponse:
+    type: "object"
+    required:
+    - "url"
+    - "expiresInMin"
+    properties:
+      url:
+        type: "string"
+      expiresInMin:
+        type: "integer"
+externalDocs:
+  description: "FHIR structure definition"
+  url: "https://www.hl7.org/fhir/structuredefinition"

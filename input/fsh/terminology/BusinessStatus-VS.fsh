@@ -10,6 +10,8 @@ and Task resources.
 """
 * ^url = $EFormsBusinessStatusVS
 * ^status = #active
+* ^experimental = false
+* ^jurisdiction = urn:iso:std:iso:3166:-2#CA-ON "Ontario"
 
 // eForms codes
 * include codes from system $EFormsBusinessStatusCS

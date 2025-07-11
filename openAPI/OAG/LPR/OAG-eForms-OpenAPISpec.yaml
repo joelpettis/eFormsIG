@@ -1,0 +1,1136 @@
+swagger: '2.0'
+info:
+  title: eForms API
+  version: 1.0.0
+  description: The eForms API is a FHIR API for creating and updating QuestionnaireResponses
+host: provider.tbd.ehealthontario.ca
+basePath: /eForms/v1/
+schemes:
+  - https
+produces: ["application/fhir+json","application/fhir+xml"]
+paths:
+  /Questionnaire:
+    parameters:
+    - description: The client generated request ID
+      in: header
+      name: X-Request-Id
+      type: string
+      required: false
+    - description: json (default) or xml
+      in: query
+      name: _format
+      required: false
+      type: string   
+    get:
+      summary: Retreive a list of Quesitonnaire Resources
+      description: |
+        This interaction searches for a list of published form templates
+      operationId: questionnaireSearchByGet
+      parameters:
+        - description: The questionnaire publication date	
+          in: query
+          name: date
+          required: false
+          type: string
+        - description: The name of the questionnaire	
+          in: query
+          name: name
+          required: false
+          type: string
+        - description: The description of the questionnaire	
+          in: query
+          name: description
+          required: false
+          type: string
+        - description: The status of the questionnaire	
+          in: query
+          name: status
+          required: false
+          type: string
+        - description: This parameter can be used to specify sorting criteria. It can be used to sort in either ascending or descending order. The optional "-" prefix indicates descending order. 
+          in: query
+          name: _sort
+          required: false
+          type: string
+        - description: This parameter can be used to select resources based on the last time they were changed
+          in: query
+          name: _lastupdated
+          required: false
+          type: string
+        - description: Size limit (for response paging). Limit the number of match results per page of response. If there is no _count in the search request, the server will use a configurable default page size, e.g. 50.
+          in: query
+          name: _count
+          required: false
+          type: string
+        - description: The paging offset
+          in: query
+          name: _getpagesoffset
+          required: false
+          type: string
+        - description: json (default) or xml
+          in: query
+          name: _format
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Resource succesfully returned / No matches 
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+    post:
+      summary: Create a Questionnaire Resource
+      description: |
+        This interaction creates a Questionnaire resource based on the submitted data/body
+      operationId: questionnaireCreate
+      parameters:
+        - description: The Questionnaire Resource to be created
+          in: body
+          name: body
+          required: true
+          schema:
+            type: object
+      responses:
+        '201':
+          description: A new Questionnaire is submitted. Returns the created resource.
+          schema:
+            type: object
+        '400':
+          description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '409':
+          description: Duplicate resource
+          schema:
+            type: object
+        '422':
+          description: Error, validation/business/semantically erroneous
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+  /Questionnaire/{id}:
+    get:
+      summary: Retrieve a Questionnaire resources based on its ID
+      consumes: ["application/fhir+json"]
+      produces: ["application/fhir+json"]
+      description: |
+        This is a FHIR read of a Quesitonnaire based on its ID
+      operationId: questionnaireRead
+      parameters:
+        - description: The id of the FHIR resource
+          in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Resource succesfully returned / No matches 
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '422':
+          description: FHIR validation errors such as invalid code, wrong date format or violation of LOB defined business rules
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+    put:
+      summary: Update/replace a Questionnaire resource
+      description: |
+        This interaction updates/replaces a Questionnaire resource based on the submitted data/body
+      operationId: questionnaireUpdate
+      parameters:
+        - description: The id of the Questionnaire resource
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: The bundle contains a Questionnaire to be updated
+          in: body
+          name: body
+          required: true
+          schema:
+            type: object
+      responses:
+        '200':
+          description: 	An update to an existing Questionnaire bundle is submitted in order to invalidate an existing Questionnaire. Returns the updated resource
+          schema:
+            type: object
+        '400':
+          description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '412':
+          description: Resource already exists
+          schema:
+            type: object
+        '422':
+          description: Error, validation/business/semantically erroneous
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+    patch:
+      summary: "instance-patch: Patch a Questionnaire ID"
+      parameters:
+      - name: id
+        in: path
+        description: The Questionnaire Resource ID
+        required: true
+        style: simple
+        schema:
+          minimum: 1
+          type: string
+        example: "123"
+      requestBody:
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+            example: |-
+              {
+                "resourceType": "Parameters",
+                "parameter": [ {
+                  "name": "operation",
+                  "part": [ {
+                    "name": "type",
+                    "valueString": "add"
+                  }, {
+                    "name": "path",
+                    "valueString": "Patient"
+                  }, {
+                    "name": "name",
+                    "valueString": "birthDate"
+                  }, {
+                    "name": "value",
+                    "valueDate": "1930-01-01"
+                  } ]
+                } ]
+              }
+          application/fhir+xml:
+            schema:
+              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
+            example: |-
+              <Parameters xmlns="http://hl7.org/fhir">
+                 <parameter>
+                    <name value="operation"/>
+                    <part>
+                       <name value="type"/>
+                       <valueString value="add"/>
+                    </part>
+                    <part>
+                       <name value="path"/>
+                       <valueString value="Patient"/>
+                    </part>
+                    <part>
+                       <name value="name"/>
+                       <valueString value="birthDate"/>
+                    </part>
+                    <part>
+                       <name value="value"/>
+                       <valueDate value="1930-01-01"/>
+                    </part>
+                 </parameter>
+              </Parameters>
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        '400':
+          description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '412':
+          description: Resource already exists
+          schema:
+            type: object
+        '422':
+          description: Error, validation/business/semantically erroneous
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+  /Questionnaire/{id}/_history/{vid}:
+    get:
+      summary: Read a version specific Questionnaire resource based on its ID
+      consumes: ["application/fhir+json"]
+      produces: ["application/fhir+json"]      
+      description:  This interaction retireve a historical Questionnaire resource
+      operationId: questionnaireVRead
+      parameters:
+        - description: The id of the Questionnaire resource
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: The history version id of the Questionnaire resource
+          in: path
+          name: vid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Resource succesfully returned / No matches 
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '422':
+          description: FHIR validation errors such as invalid code, wrong date format or violation of LOB defined business rules
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+  /Questionnaire/_search:
+    parameters:
+    - description: The client generated request ID
+      in: header
+      name: X-Request-Id
+      type: string
+      required: false
+    post:
+      summary: Search for Questionnaires using POST _search 
+      description: This interaction searches for Questionnaire Resources
+      operationId: questionnaireSearchByPost
+      parameters:
+        - description: The questionnaire publication date	
+          in: formData
+          name: date
+          required: false
+          type: string
+        - description: The name of the questionnaire	
+          in: formData
+          name: name
+          required: false
+          type: string
+        - description: The description of the questionnaire	
+          in: formData
+          name: description
+          required: false
+          type: string
+        - description: The status of the questionnaire	
+          in: formData
+          name: status
+          required: false
+          type: string
+        - description: This parameter can be used to specify sorting criteria. It can be used to sort in either ascending or descending order. The optional "-" prefix indicates descending order. 
+          in: formData
+          name: _sort
+          required: false
+          type: string
+        - description: This parameter can be used to select resources based on the last time they were changed
+          in: formData
+          name: _lastupdated
+          required: false
+          type: string
+        - description: Size limit (for response paging). Limit the number of match results per page of response. If there is no _count in the search request, the server will use a configurable default page size, e.g. 50.
+          in: formData
+          name: _count
+          required: false
+          type: string
+        - description: The paging offset
+          in: formData
+          name: _getpagesoffset
+          required: false
+          type: string
+        - description: json (default) or xml
+          in: formData
+          name: _format
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Resource succesfully returned / No matches
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+  /QuestionnaireResponse:
+    parameters:
+    - description: The client generated request ID
+      in: header
+      name: X-Request-Id
+      type: string
+      required: false
+    get:
+      summary: Retreive a list of Quesitonnaire
+      description: |
+        This interaction searches for a list of published form templates
+      operationId: questionnaireResponseSearchByGet
+      parameters:
+        - description: The author of the QuestionnaireResponse 
+          in: query
+          name: author
+          required: false
+          type: string
+        - description: 	When the QuestionnaireResponse was last changed
+          in: query
+          name: authored
+          required: false
+          type: string
+        - description: The patient that is the subject of the QuestionnaireResponse
+          in: query
+          name: patient
+          required: false
+          type: string
+        - description: 	The Questionnaire Resource the answers are provided for
+          in: query
+          name: questionnaire
+          required: false
+          type: string
+        - description: The individual providing the information reflected in the QuestionnaireResponse
+          in: query
+          name: source
+          required: false
+          type: string
+        - description: The status of the QuestionnaireResponse	
+          in: query
+          name: status
+          required: false
+          type: string
+        - description: The subject of the QuestionnaireResponse	
+          in: query
+          name: subject
+          required: false
+          type: string
+        - description: This parameter can be used to specify sorting criteria. It can be used to sort in either ascending or descending order. The optional "-" prefix indicates descending order. 
+          in: query
+          name: _sort
+          required: false
+          type: string
+        - description: This parameter can be used to select resources based on the last time they were changed
+          in: query
+          name: _lastupdated
+          required: false
+          type: string
+        - description: Size limit (for response paging). Limit the number of match results per page of response. If there is no _count in the search request, the server will use a configurable default page size, e.g. 50.
+          in: query
+          name: _count
+          required: false
+          type: string
+        - description: The paging offset
+          in: query
+          name: _getpagesoffset
+          required: false
+          type: string
+        - description: json (default) or xml
+          in: query
+          name: _format
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Resource succesfully returned / No matches 
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+    post:
+      summary: Create a QuestionnaireResponse Resource
+      description: |
+        This interaction creates a QuestionnaireResponse resource based on the submitted data/body
+      operationId: questionnaireResponseCreate
+      parameters:
+        - description: The QuestionnaireResponse Resource to be created
+          in: body
+          name: body
+          required: true
+          schema:
+            type: object
+      responses:
+        '201':
+          description: A new QuestionnaireResponse is submitted. Returns the created resource.
+          schema:
+            type: object
+        '400':
+          description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '409':
+          description: Duplicate resource
+          schema:
+            type: object
+        '422':
+          description: Error, validation/business/semantically erroneous
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+  /QuestionnaireResponse/{id}:
+    get:
+      summary: Retrieve a QuestionnaireResponse resources based on its ID
+      consumes: ["application/fhir+json"]
+      produces: ["application/fhir+json"]
+      description: |
+        This is a FHIR read of a Quesitonnaire based on its ID
+      operationId: questionnaireResponseRead
+      parameters:
+        - description: The id of the FHIR resource
+          in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Resource succesfully returned / No matches 
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '422':
+          description: FHIR validation errors such as invalid code, wrong date format or violation of LOB defined business rules
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+    put:
+      summary: Update/replace a QuestionnaireResponse resource
+      description: |
+        This interaction updates/replaces a QuestionnaireResponse resource based on the submitted data/body
+      operationId: questionnaireResponseUpdate
+      parameters:
+        - description: The id of the QuestionnaireResponse resource
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: The bundle contains a QuestionnaireResponse to be updated
+          in: body
+          name: body
+          required: true
+          schema:
+            type: object
+      responses:
+        '200':
+          description: 	An update to an existing QuestionnaireResponse bundle is submitted in order to invalidate an existing QuestionnaireResponse. Returns the updated resource
+          schema:
+            type: object
+        '400':
+          description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '412':
+          description: Resource already exists
+          schema:
+            type: object
+        '422':
+          description: Error, validation/business/semantically erroneous
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+    patch:
+      summary: "instance-patch: Patch a QuestionnaireResponse ID"
+      parameters:
+      - name: id
+        in: path
+        description: The QuestionnaireResponse Resource ID
+        required: true
+        style: simple
+        schema:
+          minimum: 1
+          type: string
+        example: "123"
+      requestBody:
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+            example: |-
+              {
+                "resourceType": "Parameters",
+                "parameter": [ {
+                  "name": "operation",
+                  "part": [ {
+                    "name": "type",
+                    "valueString": "add"
+                  }, {
+                    "name": "path",
+                    "valueString": "Patient"
+                  }, {
+                    "name": "name",
+                    "valueString": "birthDate"
+                  }, {
+                    "name": "value",
+                    "valueDate": "1930-01-01"
+                  } ]
+                } ]
+              }
+          application/fhir+xml:
+            schema:
+              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
+            example: |-
+              <Parameters xmlns="http://hl7.org/fhir">
+                 <parameter>
+                    <name value="operation"/>
+                    <part>
+                       <name value="type"/>
+                       <valueString value="add"/>
+                    </part>
+                    <part>
+                       <name value="path"/>
+                       <valueString value="Patient"/>
+                    </part>
+                    <part>
+                       <name value="name"/>
+                       <valueString value="birthDate"/>
+                    </part>
+                    <part>
+                       <name value="value"/>
+                       <valueDate value="1930-01-01"/>
+                    </part>
+                 </parameter>
+              </Parameters>
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        '400':
+          description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '412':
+          description: Resource already exists
+          schema:
+            type: object
+        '422':
+          description: Error, validation/business/semantically erroneous
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+  /QuestionnaireResponse/{id}/_history/{vid}:
+    get:
+      summary: Read a version specific QuestionnaireResponse resource based on its ID
+      consumes: ["application/fhir+json"]
+      produces: ["application/fhir+json"]      
+      description:  This interaction retireve a historical QuestionnaireResponse resource
+      operationId: questionnaireResponseVRead
+      parameters:
+        - description: The id of the QuestionnaireResponse resource
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: The history version id of the QuestionnaireResponse resource
+          in: path
+          name: vid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Resource succesfully returned / No matches 
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '422':
+          description: FHIR validation errors such as invalid code, wrong date format or violation of LOB defined business rules
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+  /QuestionnaireResponse/_search:
+    parameters:
+    - description: The client generated request ID
+      in: header
+      name: X-Request-Id
+      type: string
+      required: false
+    post:
+      summary: Search for QuestionnaireResponses using POST _search 
+      description: This interaction searches for QuestionnaireResponse Resources
+      operationId: questionnaireResponseSearchByPost
+      parameters:
+        - description: The author of the QuestionnaireResponse 
+          in: formData
+          name: author
+          required: false
+          type: string
+        - description: 	When the QuestionnaireResponse was last changed
+          in: formData
+          name: authored
+          required: false
+          type: string
+        - description: The patient that is the subject of the QuestionnaireResponse
+          in: formData
+          name: patient
+          required: false
+          type: string
+        - description: 	The Questionnaire Resource the answers are provided for
+          in: formData
+          name: questionnaire
+          required: false
+          type: string
+        - description: The individual providing the information reflected in the QuestionnaireResponse
+          in: formData
+          name: source
+          required: false
+          type: string
+        - description: The status of the QuestionnaireResponse	
+          in: formData
+          name: status
+          required: false
+          type: string
+        - description: The subject of the QuestionnaireResponse	
+          in: formData
+          name: subject
+          required: false
+          type: string
+        - description: This parameter can be used to specify sorting criteria. It can be used to sort in either ascending or descending order. The optional "-" prefix indicates descending order. 
+          in: formData
+          name: _sort
+          required: false
+          type: string
+        - description: This parameter can be used to select resources based on the last time they were changed
+          in: formData
+          name: _lastupdated
+          required: false
+          type: string
+        - description: Size limit (for response paging). Limit the number of match results per page of response. If there is no _count in the search request, the server will use a configurable default page size, e.g. 50.
+          in: formData
+          name: _count
+          required: false
+          type: string
+        - description: The paging offset
+          in: formData
+          name: _getpagesoffset
+          required: false
+          type: string
+        - description: json (default) or xml
+          in: formData
+          name: _format
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Resource succesfully returned / No matches
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object

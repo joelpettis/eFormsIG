@@ -6,13 +6,14 @@ Instance: TransitionWorkflow
 InstanceOf: OperationDefinition
 Usage: #definition
 
-* url       = "http://ontario.ca/fhir/OperationDefinition/transitionWorkflow"
+* url       = "http://ontario.ca/fhir/eforms/OperationDefinition/TransitionWorkflow"
 * name      = "TransitionWorkflow"
 * title     = "[base]/ServiceRequest/[id]/$transitionWorkflow"
 * status    = #draft
 * kind      = #operation
 * date      = "2025-07-06"
 * publisher = "Ontario Health eForms"
+* jurisdiction = urn:iso:std:iso:3166:-2#CA-ON "Ontario"
 * description = """
 Instance-level operation on ServiceRequest that changes the businessStatus
 extension (eForms workflow state) and updates associated Task resources.

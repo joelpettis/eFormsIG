@@ -5,13 +5,14 @@ Instance: InstantiateFormWorkflow
 InstanceOf: OperationDefinition
 Usage: #definition
 
-* url       = "http://ontario.ca/fhir/OperationDefinition/instantiateFormWorkflow"
+* url       = "http://ontario.ca/fhir/eforms/OperationDefinition/InstantiateFormWorkflow"
 * name      = "InstantiateFormWorkflow"
 * title     = "[base]/PlanDefinition/[id]/$instantiateFormWorkflow"
 * status    = #draft
 * kind      = #operation
 * date      = "2025-07-04"
 * publisher = "Ontario Health eForms"
+* jurisdiction = urn:iso:std:iso:3166:-2#CA-ON "Ontario"
 * description = """
 Instantiates the eform Workflow by creating a ServiceRequesta as well as all required Tasks, 
 as defined by the Plan Definition.activity[].  The Service `Request Questionnaire extension`
@@ -38,7 +39,7 @@ Paln Definition in the Repository and then returns a
 * parameter[=].max           = "1"
 * parameter[=].type          = #Reference
 * parameter[=].targetProfile[+] = $EFormPatient
-* parameter[=].documentation = "The individual who is the subject of the eForm. Sourced from CMS when possible. "
+* parameter[=].documentation = "The individual who is the subject of the eForm. Sourced from CMS when possible "
 
 * parameter[+].name          = #requester
 * parameter[=].use           = #in

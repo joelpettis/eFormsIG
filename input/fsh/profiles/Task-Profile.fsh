@@ -30,11 +30,8 @@ It tracks the work item of getting a specific eForm completed. It includes custo
 * for only Reference(Patient)
 
 * requester only Reference(Organization or PractitionerRole)
-* owner 1..1 MS
 * owner only Reference(Organization or PractitionerRole)
 * note 0..1 MS
-* code 1..1 MS
-* code from $EFormsTaskCodeVS 
 * input[questionnaire] 1..1 MS
 * input[questionnaire] ^definition = "Indicates the questionnaire(s) to be completed."
 * input[questionnaire] ^condition = "sdc-t1"
