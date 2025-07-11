@@ -3955,7 +3955,6 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
- 
       summary: "instance-patch: Patch a PlanDefinition ID"
       parameters:
       - name: id
@@ -4062,6 +4061,88 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
+  /PlanDefinition/{id}/$instantiateFormWorkflow:
+    # ─────────────────────────────────────────────────────────────────────
+    #  Custom server-level operation that instantiates an eForms workflow
+    #  from the specified PlanDefinition instance.
+    # ─────────────────────────────────────────────────────────────────────
+    parameters:
+      - name: X-Request-Id
+        in: header
+        description: The client-generated request ID
+        type: string
+        required: false
+      # Optional _format query parameter (json | xml)
+      - name: _format
+        in: query
+        description: json (default) or xml
+        type: string
+        required: false
+    post:
+      summary: "instantiateFormWorkflow – Instantiate an eForms workflow"
+      description: |
+        Invokes the **$instantiateFormWorkflow** operation defined in
+        `OperationDefinition/InstantiateFormWorkflow`.
+
+        • **Input** – a FHIR `Parameters` resource in the request body  
+          • `subject`  (1..1) → Reference(Patient) **required**  
+          • `requester` (0..1) → Reference(PractitionerRole | Organization)  
+          • `performer` (0..1) → Reference(PractitionerRole | Organization)
+
+        • **Result** – on success returns an **HTTP 200** with a Bundle (type `collection`)  
+          containing the newly-persisted `ServiceRequest` (entry 0) followed by
+          all generated `Task` resources, and an optional `OperationOutcome`.
+
+      operationId: PlanDefinitionInstantiateFormWorkflow
+      consumes: ["application/fhir+json"]
+      produces: ["application/fhir+json"]
+      parameters:
+        - name: id
+          in: path
+          description: The **PlanDefinition.id** to instantiate
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Parameters resource supplying `subject`, `requester`, etc.
+          required: true
+          schema:
+            type: object  
+      responses:
+        '200':
+          description: Successfully instantiated workflow – returns Bundle snapshot
+          schema:
+            type: object
+        '400':
+          description: Bad request (missing or invalid parameters)
+          schema: { type: object }
+        '401':
+          description: Failed authentication
+          schema: { type: object }
+        '403':
+          description: Failed authorization
+          schema: { type: object }
+        '404':
+          description: PlanDefinition not found
+          schema: { type: object }
+        '406':
+          description: Unsupported _format or Accept header
+          schema: { type: object }
+        '422':
+          description: Validation / business rule violation
+          schema: { type: object }
+        '429':
+          description: Too many requests
+          schema: { type: object }
+        '500':
+          description: Internal server error
+          schema: { type: object }
+        '503':
+          description: Service temporarily unavailable
+          schema: { type: object }
+        '504':
+          description: Downstream system timeout
+          schema: { type: object }
   /PlanDefinition/{id}/_history/{vid}:
     get:
       summary: Read a version specific PlanDefinition resource based on its ID
@@ -5941,6 +6022,18 @@ paths:
           name: _format
           required: false
           type: string
+        - name: designNote
+          in: query
+          description: Search by designNote
+          required: false
+          schema:
+            type: string
+        - name: assemble-expectation
+          in: query
+          description: Search by assemble-expectation
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -7365,6 +7458,18 @@ paths:
         required: false
         schema:
           type: string
+      - name: questionnaire
+        in: query
+        description: Search by questionnaire
+        required: false
+        schema:
+          type: string
+      - name: businessStatus
+        in: query
+        description: Search by businessStatus
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -7679,6 +7784,85 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
+  /ServiceRequest/{id}/$transitionWorkflow:
+    # --------------------------------------------------------------
+    #  Instance-level operation that moves a ServiceRequest (and its
+    #  linked Tasks) to a new eForms workflow state.
+    # --------------------------------------------------------------
+    parameters:
+      - name: X-Request-Id
+        in: header
+        description: Client supplied correlation identifier
+        type: string
+        required: false
+      - name: _format
+        in: query
+        description: Preferred response format (json default, xml allowed)
+        type: string
+        required: false
+    post:
+      summary: "transitionWorkflow Change eForms workflow state"
+      description: |
+        Invokes **$transitionWorkflow** on a single ServiceRequest instance.
+
+        **Input body** -  a FHIR `Parameters` resource with  
+        • `targetStatus` (code, required) - the desired businessStatus value  
+          (must come from **EFormsBusinessStatusVS**).
+
+        **Success response** -  HTTP 200 containing a `Bundle` (type = collection)  
+        where entry 0 is the updated `ServiceRequest` followed by any `Task`
+        resources that were created or modified. An optional `OperationOutcome`
+        may be present to carry warnings.
+
+      operationId: ServiceRequestTransitionWorkflow
+      consumes: ["application/fhir+json"]
+      produces: ["application/fhir+json"]
+      parameters:
+        - name: id
+          in: path
+          description: The `ServiceRequest.id` to transition
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Parameters resource containing `targetStatus`
+          required: true
+          schema:
+            type: object   
+      responses:
+        '200':
+          description: Workflow transitioned, returns snapshot Bundle
+          schema: { type: object }
+        '400':
+          description: Bad request (missing or invalid targetStatus)
+          schema: { type: object }
+        '401':
+          description: Authentication failed
+          schema: { type: object }
+        '403':
+          description: Authorization failed
+          schema: { type: object }
+        '404':
+          description: ServiceRequest not found
+          schema: { type: object }
+        '406':
+          description: Unsupported _format or Accept header
+          schema: { type: object }
+        '422':
+          description: Business rule or validation error
+          schema: { type: object }
+        '429':
+          description: Too many requests
+          schema: { type: object }
+        '500':
+          description: Internal server error
+          schema: { type: object }
+        '503':
+          description: Service unavailable
+          schema: { type: object }
+        '504':
+          description: Timeout calling downstream service
+          schema: { type: object }
   /ServiceRequest/_search:
     parameters:
     - description: The client generated request ID
@@ -7975,6 +8159,18 @@ paths:
         required: false
         schema:
           type: string
+      - name: questionnaire
+        in: query
+        description: Search by questionnaire
+        required: false
+        schema:
+          type: string
+      - name: businessStatus
+        in: query
+        description: Search by businessStatus
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -8218,6 +8414,12 @@ paths:
       - name: status
         in: query
         description: Search by task status
+        required: false
+        schema:
+          type: string
+      - name: task-replaces
+        in: query
+        description: Search by task-replaces
         required: false
         schema:
           type: string
@@ -8580,6 +8782,12 @@ paths:
       - name: status
         in: query
         description: Search by task status
+        required: false
+        schema:
+          type: string
+      - name: task-replaces
+        in: query
+        description: Search by task-replaces
         required: false
         schema:
           type: string
