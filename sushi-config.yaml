@@ -63,9 +63,13 @@ pages:
 # http://build.fhir.org/codesystem-guide-parameter-code.html
 # For parameters defined by the FHIR Tools IG see:
 # http://build.fhir.org/ig/FHIR/fhir-tools-ig/branches/master/CodeSystem-ig-parameters.html
+# see documentation on parameters here: 
+# https://confluence.hl7.org/spaces/FHIR/pages/66938614/Implementation+Guide+Parameters#ImplementationGuideParameters-ManagingWarningsandHints%20#%20(And%20include%20comments%20like%20this%20justifying%20why)
 #
-# parameters:
-#   excludettl: true
+parameters:
+  excludettl: true
+  excludexml: true
+#.  rule-broken-links: warning // Note this doesn't work for some stupid reason. 
 #   validation: [allow-any-extensions, no-broken-links]
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮

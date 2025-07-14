@@ -12,9 +12,10 @@ Alias: $SDCQuestionnaireCanonical           = http://hl7.org/fhir/uv/sdc/Structu
 Alias: $SDCQuestionnaireResponseCanonical   = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaireresponse //SDC Questionnaire Response Profile
 Alias: $QuestionnaireSubExtCanonical        = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire
 Alias: $assemble-expectation                = http://hl7.org/fhir/StructureDefinition/assemble-expectation
+Alias: $versionAlgorithm                    = http://hl7.org/fhir/StructureDefinition/artifact-versionAlgorithm
 
 //Extensions
-Alias: $TaskReplacesExtCanonical            = http://hl7.org/fhir/StructureDefinition/task-replaces //Task extension
+Alias: $TaskReplacesExtCanonical            = http://hl7.org/fhir/StructureDefinition/task-replaces|5.2.0 //Task extension
 Alias: $temp                                = http://hl7.org/fhir/uv/sdc/CodeSystem/temp
 
 //Terminology

@@ -39,7 +39,7 @@ Paln Definition in the Repository and then returns a
 * parameter[=].max           = "1"
 * parameter[=].type          = #Reference
 * parameter[=].targetProfile[+] = $EFormPatient
-* parameter[=].documentation = "The individual who is the subject of the eForm. Sourced from CMS when possible "
+* parameter[=].documentation = "The individual who is the subject of the eForm. Sourced from CMS when possible"
 
 * parameter[+].name          = #requester
 * parameter[=].use           = #in
