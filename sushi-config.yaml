@@ -5,7 +5,7 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: fhir.ca.on.eforms
 canonical: http://ontario.ca/fhir/eforms
-name: eForms
+name: EForms
 title: Ontario Health eForms Implementation Guide
 description: This is the Implementation Guide for Ontario Health eForms
 status: draft  # draft | active | retired | unknown
@@ -25,7 +25,10 @@ publisher:
 # use cases, the value can be an object with keys for id, uri, and version.
 #
 dependencies:
-  hl7.fhir.uv.sdc:  4.0.0-ballot        # R4 version that contains sdc-task
+ # hl7.fhir.uv.sdc: 4.0.0-ballot        # R4 version that contains sdc-task
+ # hl7.fhir.extensions.r5: 4.0.1
+  hl7.fhir.uv.sdc: 3.0.0        # R4 version that contains sdc-task
+
 #  hl7.fhir.r4.core: 4.0.1
 #   hl7.fhir.us.core: 3.1.0
 #   hl7.fhir.us.mcode:
@@ -69,8 +72,10 @@ pages:
 parameters:
   excludettl: true
   excludexml: true
-#.  rule-broken-links: warning // Note this doesn't work for some stupid reason. 
-#   validation: [allow-any-extensions, no-broken-links]
+  pin-canonicals: pin-multiples  # Pin canonical references to specific versions to avoid ambiguity
+  #auto-oid-root: 2.16.840.1.113883.3.464 
+  #validation: [allow-any-extensions, no-broken-links]
+  
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │

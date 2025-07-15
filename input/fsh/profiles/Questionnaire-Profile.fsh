@@ -26,13 +26,13 @@ extension appears should be replaced with the referenced Questionnaire
 // require assemble-expectation
 * extension[assemble-expectation] 1..1 MS
 * extension[assemble-expectation] ^short = "For eForms, all forms must be independent.  Use independent-root-or-child to indicate it is a root Questionnaires, and independent-child for all child Questionnaires"
-
-// hide extensions we won't use
-* extension[copyrightLabel] 0..0
+ 
+// hide extensions we won't use (only those available in SDC 3.0.0)
+// * extension[copyrightLabel] 0..0  // Not available in SDC 3.0.0
 * extension[performerType] 0..0
-* extension[versionAlgorithm] 0..0
-* item.extension[hidden] 0..0
-* item.extension[answerConstraint] 0..0
+// * extension[versionAlgorithm] 0..0  // Commented out to allow versioning per SDC-2 constraint
+// * item.extension[hidden] 0..0  // Not available in SDC 3.0.0
+// * item.extension[answerConstraint] 0..0  // Not available in SDC 3.0.0
 
 // add Sub Questionnaire Sub
 * item.extension contains $QuestionnaireSubExtCanonical named subQuestionnaire 0..1 MS

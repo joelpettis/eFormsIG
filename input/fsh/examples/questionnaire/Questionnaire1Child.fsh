@@ -7,7 +7,6 @@ Usage: #example
 
 // machine-readable identifiers
 * name = "Questionnaire1Child"
-* version = "1.0.0"
 * title = "Questionnaire 1 Subform"
 * status = #active
 * description = """
@@ -19,8 +18,6 @@ A Questionnaire example that is a child
 // child questionnaires must be independent child
 * extension[assemble-expectation].valueCode = #independent-child
 
-// versionAlgorithmString only exists in FHIR R4B+.
-* extension[$versionAlgorithm].valueString = "semver" 
 
 
 // actual questions

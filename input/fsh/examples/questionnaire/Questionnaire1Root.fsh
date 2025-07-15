@@ -7,7 +7,6 @@ Usage: #example
 * url = "http://ontario.ca/fhir/eforms/Questionnaire/Questionnaire1-Root"
 
 * name = "Questionnaire1Root"
-* version = "1.0.0"
 * title = "Questionnaire 1 Root"
 * status = #active
 * description = """
@@ -15,10 +14,6 @@ A Questionnaire example that is a parent / root
 """
 // All root questionnaires must be independent-root-or-child
 * extension[assemble-expectation].valueCode = #independent-root-or-child
-
-// versionAlgorithmString only exists in FHIR R4B+.
-* extension[$versionAlgorithm].valueString = "semver" 
-
 
 // Display items that will be replaced by child questionnaires
 * item[0].linkId = "section-patient-info"

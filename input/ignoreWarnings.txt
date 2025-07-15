@@ -4,27 +4,38 @@
 # (And include comments like this justifying why)
 # See https://github.com/FHIR/sample-ig/blob/master/input/ignoreWarnings.txt for examples
 
-Reference to draft CodeSystem urn:iso:std:iso:3166:-2|2021 from fhir.tx.support.r4#0.29.0
+#Communication Resource
 The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/workflow-adheresTo'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/workflow-adheresTo' to 'http://hl7.org/fhir/StructureDefinition/workflow-adheresTo|5.2.0'
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/workflow-triggeredBy'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/workflow-triggeredBy' to 'http://hl7.org/fhir/StructureDefinition/workflow-triggeredBy|5.2.0'
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-signature'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 4.0.1, 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-signature' to 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-signature|5.2.0'
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-completionMode'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 4.0.1, 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-completionMode' to 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-completionMode|5.2.0'
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/display'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 4.0.1, 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/display' to 'http://hl7.org/fhir/StructureDefinition/display|5.2.0'
+
+#Questionnaire
+Pinned the version of http://hl7.org/fhir/StructureDefinition/designNote to 5.2.0 from choices of 4.0.1 (hl7.fhir.r4.core#4.0.1), 5.2.0 (hl7.fhir.uv.extensions.r4#5.2.0)
+
+#Task
+Reference to draft CodeSystem http://hl7.org/fhir/uv/sdc/CodeSystem/temp|3.0.0
+The discriminator type 'pattern' is deprecated in R5+. For future compatibility, you could consider using type=value with a pattern[x] instead (if this is not an inherited slicing)
+
+#QuestoinnaireResponse
+Pinned the version of http://hl7.org/fhir/StructureDefinition/questionnaireresponse-signature to 5.2.0 from choices of 4.0.1 (hl7.fhir.r4.core#4.0.1), 5.2.0 (hl7.fhir.uv.extensions.r4#5.2.0)
+Pinned the version of http://hl7.org/fhir/StructureDefinition/questionnaireresponse-completionMode to 5.2.0 from choices of 4.0.1 (hl7.fhir.r4.core#4.0.1), 5.2.0 (hl7.fhir.uv.extensions.r4#5.2.0)
+Pinned the version of http://hl7.org/fhir/StructureDefinition/display to 5.2.0 from choices of 4.0.1 (hl7.fhir.r4.core#4.0.1), 5.2.0 (hl7.fhir.uv.extensions.r4#5.2.0)
+Pinned the version of http://hl7.org/fhir/StructureDefinition/ordinalValue to 5.2.0 from choices of 4.0.1 (hl7.fhir.r4.core#4.0.1), 5.2.0 (hl7.fhir.uv.extensions.r4#5.2.0)
 The extension http://hl7.org/fhir/StructureDefinition/regex|5.2.0 is deprecated with the note This was deprecated in favor of using a constraint on the element using FHIRPath, since constraints allow for the provision of a human readable message associated with the regex
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-signature'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 4.0.1, 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-signature' to 'http://hl7.org/fhir/StructureDefinition/questionnaireresponse-signature|5.2.0'
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/itemWeight'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/itemWeight' to 'http://hl7.org/fhir/StructureDefinition/itemWeight|5.2.0'
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/designNote'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 4.0.1, 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/designNote' to 'http://hl7.org/fhir/StructureDefinition/designNote|5.2.0'
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 4.0.1, 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden' to 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden|5.2.0'
-There are multiple different potential matches for the url 'http://hl7.org/fhir/StructureDefinition/designNote'. It might be a good idea to fix to the correct version to reduce the likelihood of a wrong version being selected by an implementation/implementer, or use the [IG Parameter `pin-canonicals`](https://hl7.org/fhir/tools/CodeSystem-ig-parameters.html). Using version '5.2.0', found versions: 4.0.1, 5.1.0, 5.2.0. Suggested fix: change the canonical reference from 'http://hl7.org/fhir/StructureDefinition/designNote' to 'http://hl7.org/fhir/StructureDefinition/designNote|5.2.0'
+
+# broken
+Reference to draft CodeSystem urn:iso:std:iso:3166:-2|2021 from fhir.tx.support.r4#0.29.0
 
 # broken links
 The link 'http://hl7.org/fhir/uv/sdc/2025Jan/workflow-extensions.html#instantiation' for "notes" cannot be resolved
 The link 'http://hl7.org/fhir/extensions/5.1.0codesystem-concept-properties.html#concept-properties-itemWeight' for "itemWeight property" cannot be resolved
 The link 'http://hl7.org/fhir/extensions/5.1.0codesystem-concept-properties.html#concept-properties-itemWeight' for "itemWeight property" cannot be resolved
+
+# broken links
 The link 'http://hl7.org/fhir/R4/valueset-diagnostic-requests.html' for "here" cannot be resolved
 The link 'http://hl7.org/fhir/R4/valueset-diagnostic-requests.html' for "here" cannot be resolved
 The link 'http://hl7.org/fhir/R4/valueset-diagnostic-requests.html' for "here" cannot be resolved
 The link 'http://hl7.org/fhir/R4/valueset-diagnostic-requests.html' for "here" cannot be resolved
 The link 'http://hl7.org/fhir/R4/valueset-diagnostic-requests.html' for "here" cannot be resolved
 The link 'http://hl7.org/fhir/R4/valueset-diagnostic-requests.html' for "here" cannot be resolved
+
+#sdc 
+The extension http://hl7.org/fhir/StructureDefinition/ordinalValue|5.2.0 is deprecated with the note Replaced by [[[http://hl7.org/fhir/StructureDefinition/itemWeight]]]
