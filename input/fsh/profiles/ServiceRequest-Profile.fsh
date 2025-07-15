@@ -7,7 +7,6 @@ Id: EFormsServiceRequest
 Title:     "Service Request Profile"
 Description: """
 Service Request Profile for OH eForms which extends sdc-service-request.
-Adds some additional extensions to be described <<TBD>>
 
 Utilized in Request-based solicitation as defined by SDC, this resource is the initial trigger
 for the entire workflow.  
