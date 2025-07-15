@@ -1,10 +1,10 @@
 swagger: '2.0'
 info:
   title: eForms API
-  version: 1.0.0
+  version: 2.0.0
   description: The eForms API is a FHIR API for creating and updating QuestionnaireResponses
 host: provider.tbd.ehealthontario.ca
-basePath: /eForms/v1/
+basePath: /api/fhir/r4/eForms
 schemes:
   - https
 produces: ["application/fhir+json","application/fhir+xml"]
@@ -31,161 +31,126 @@ paths:
         in: query
         description: Unique identifier
         required: false
-        schema:
-          type: string
+        type: string
       - name: subject
         in: query
         description: Focus of message
         required: false
-        schema:
-          type: string
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+        type: string
       - name: instantiates-canonical
         in: query
         description: Instantiates FHIR protocol or definition
         required: false
-        schema:
-          type: string
+        type: string
       - name: part-of
         in: query
         description: Part of this action
         required: false
-        schema:
-          type: string
+        type: string
       - name: received
         in: query
         description: When received
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: encounter
         in: query
         description: Encounter created as part of
         required: false
-        schema:
-          type: string
+        type: string
       - name: medium
         in: query
         description: A channel of communication
         required: false
-        schema:
-          type: string
+        type: string
       - name: sent
         in: query
         description: When sent
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: based-on
         in: query
         description: Request fulfilled by this communication
         required: false
-        schema:
-          type: string
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+        type: string
       - name: sender
         in: query
         description: Message sender
         required: false
-        schema:
-          type: string
+        type: string
       - name: patient
         in: query
         description: Focus of message
         required: false
-        schema:
-          type: string
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+        type: string
       - name: recipient
         in: query
         description: Message recipient
         required: false
-        schema:
-          type: string
+        type: string
       - name: instantiates-uri
         in: query
         description: Instantiates external protocol or definition
         required: false
-        schema:
-          type: string
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+        type: string
       - name: category
         in: query
         description: Message category
         required: false
-        schema:
-          type: string
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+        type: string
       - name: status
         in: query
         description: preparation | in-progress | not-done | on-hold | stopped | completed
           | entered-in-error | unknown
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -238,7 +203,8 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Communication Resource
+
       responses:
         '201':
           description: A new Communication is submitted. Returns the created resource.
@@ -359,10 +325,10 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Communication Resource
       responses:
         '200':
-          description: 	An update to an existing Communication bundle is submitted in order to invalidate an existing Communication. Returns the updated resource
+          description:   An update to an existing Communication bundle is submitted in order to invalidate an existing Communication. Returns the updated resource
           schema:
             type: object
         '400':
@@ -412,61 +378,8 @@ paths:
         in: path
         description: The Communication Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
       responses:
         "200":
           description: Success
@@ -591,161 +504,144 @@ paths:
         in: query
         description: Unique identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: subject
         in: query
         description: Focus of message
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: instantiates-canonical
         in: query
         description: Instantiates FHIR protocol or definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: part-of
         in: query
         description: Part of this action
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: received
         in: query
         description: When received
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: encounter
         in: query
         description: Encounter created as part of
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: medium
         in: query
         description: A channel of communication
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: sent
         in: query
         description: When sent
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: based-on
         in: query
         description: Request fulfilled by this communication
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: sender
         in: query
         description: Message sender
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: patient
         in: query
         description: Focus of message
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: recipient
         in: query
         description: Message recipient
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: instantiates-uri
         in: query
         description: Instantiates external protocol or definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: category
         in: query
         description: Message category
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
-        description: preparation | in-progress | not-done | on-hold | stopped | completed
-          | entered-in-error | unknown
+        description: preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown
         required: false
-        schema:
-          type: string
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -809,41 +705,30 @@ paths:
         in: query
         description: When this document reference was created
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: subject
         in: query
         description: Who/what is the subject of the document
         required: false
-        schema:
-          type: string
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: description
         in: query
         description: Human-readable description
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: language
         in: query
         description: Human language of the content (BCP-47)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: type
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -854,27 +739,27 @@ paths:
           \ Specific type of encounter\r\n* [EpisodeOfCare](episodeofcare.html): Type/class\
           \  - e.g. specialist referral, disease management\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: relation
         in: query
         description: replaces | transforms | signs | appends
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: setting
         in: query
         description: Additional details about where the content was created (e.g.
           clinical specialty)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: related
         in: query
         description: Related identifiers or resources
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: patient
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -911,20 +796,20 @@ paths:
           \ Patient for whom the item is supplied\r\n* [VisionPrescription](visionprescription.html):\
           \ The identity of a patient to list dispenses for\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: event
         in: query
         description: Main clinical acts documented
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: authenticator
         in: query
         description: Who/what authenticated the document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -958,42 +843,37 @@ paths:
           \ Identifier for SupplyRequest\r\n* [VisionPrescription](visionprescription.html):\
           \ Return prescriptions with this external identifier\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: period
         in: query
         description: Time of service that is being documented
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: custodian
         in: query
         description: Organization which maintains the document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: author
         in: query
         description: Who and/or what authored the document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: format
         in: query
         description: Format/content rules for the document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: encounter
         in: query
         description: "Multiple Resources: \r\n\r\n* [Composition](composition.html):\
@@ -1010,93 +890,93 @@ paths:
           \ in which this request is made\r\n* [VisionPrescription](visionprescription.html):\
           \ Return prescriptions with this encounter identifier\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: contenttype
         in: query
         description: "Mime type of the content, with charset etc."
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: security-label
         in: query
         description: Document security-tags
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: location
         in: query
         description: Uri where the data can be found
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: category
         in: query
         description: Categorization of document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: relatesto
         in: query
         description: Target of the relationship
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: facility
         in: query
         description: Kind of facility where patient was seen
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
         description: current | superseded | entered-in-error
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -1149,7 +1029,7 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR DocumentReference resource
       responses:
         '201':
           description: A new DocumentReference is submitted. Returns the created resource.
@@ -1269,11 +1149,11 @@ paths:
           in: body
           name: body
           required: true
-          schema:
-            type: object
+          schema: 
+            title: FHIR DocumentReference resource
       responses:
         '200':
-          description: 	An update to an existing DocumentReference bundle is submitted in order to invalidate an existing DocumentReference. Returns the updated resource
+          description:   An update to an existing DocumentReference bundle is submitted in order to invalidate an existing DocumentReference. Returns the updated resource
           schema:
             type: object
         '400':
@@ -1323,61 +1203,8 @@ paths:
         in: path
         description: The DocumentReference Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
       responses:
         "200":
           description: Success
@@ -1502,41 +1329,30 @@ paths:
         in: query
         description: When this document reference was created
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: subject
         in: query
         description: Who/what is the subject of the document
         required: false
-        schema:
-          type: string
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: description
         in: query
         description: Human-readable description
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: language
         in: query
         description: Human language of the content (BCP-47)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: type
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -1547,27 +1363,27 @@ paths:
           \ Specific type of encounter\r\n* [EpisodeOfCare](episodeofcare.html): Type/class\
           \  - e.g. specialist referral, disease management\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: relation
         in: query
         description: replaces | transforms | signs | appends
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: setting
         in: query
         description: Additional details about where the content was created (e.g.
           clinical specialty)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: related
         in: query
         description: Related identifiers or resources
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: patient
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -1604,20 +1420,20 @@ paths:
           \ Patient for whom the item is supplied\r\n* [VisionPrescription](visionprescription.html):\
           \ The identity of a patient to list dispenses for\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: event
         in: query
         description: Main clinical acts documented
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: authenticator
         in: query
         description: Who/what authenticated the document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -1651,42 +1467,37 @@ paths:
           \ Identifier for SupplyRequest\r\n* [VisionPrescription](visionprescription.html):\
           \ Return prescriptions with this external identifier\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: period
         in: query
         description: Time of service that is being documented
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
       - name: custodian
         in: query
         description: Organization which maintains the document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: author
         in: query
         description: Who and/or what authored the document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: format
         in: query
         description: Format/content rules for the document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: encounter
         in: query
         description: "Multiple Resources: \r\n\r\n* [Composition](composition.html):\
@@ -1703,93 +1514,93 @@ paths:
           \ in which this request is made\r\n* [VisionPrescription](visionprescription.html):\
           \ Return prescriptions with this encounter identifier\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: contenttype
         in: query
         description: "Mime type of the content, with charset etc."
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: security-label
         in: query
         description: Document security-tags
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: location
         in: query
         description: Uri where the data can be found
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: category
         in: query
         description: Categorization of document
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: relatesto
         in: query
         description: Target of the relationship
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: facility
         in: query
         description: Kind of facility where patient was seen
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
         description: current | superseded | entered-in-error
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -1853,145 +1664,140 @@ paths:
         in: query
         description: An organization of which this organization forms a part
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: Any identifier for the organization (not the accreditation issuer's
           identifier)
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: address
         in: query
         description: "A server defined search that may match any of the string fields\
           \ in the Address, including line, city, district, state, country, postalCode,\
           \ and/or text"
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: address-state
         in: query
         description: A state specified in an address
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: active
         in: query
         description: Is the Organization record active
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: type
         in: query
         description: A code for the type of organization
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: address-postalcode
         in: query
         description: A postal code specified in an address
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: address-country
         in: query
         description: A country specified in an address
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: endpoint
         in: query
         description: Technical endpoints providing access to services operated for
           the organization
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: phonetic
         in: query
         description: A portion of the organization's name using some kind of phonetic
           matching algorithm
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: name
         in: query
         description: A portion of the organization's name or alias
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: address-use
         in: query
         description: A use code specified in an address
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: address-city
         in: query
         description: A city specified in an address
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+        type: string
+
       - name: _text
         in: query
-        description: Search the contents of the resource's narrative using a fulltext
-          search
+        description: Search the contents of the resource's narrative using a fulltext search
         required: false
-        schema:
-          type: string
+        type: string
+
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -2044,7 +1850,7 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Organization resource
       responses:
         '201':
           description: A new Organization is submitted. Returns the created resource.
@@ -2165,10 +1971,10 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Bundle with Organization resource
       responses:
         '200':
-          description: 	An update to an existing Organization bundle is submitted in order to invalidate an existing Organization. Returns the updated resource
+          description:   An update to an existing Organization bundle is submitted in order to invalidate an existing Organization. Returns the updated resource
           schema:
             type: object
         '400':
@@ -2218,61 +2024,9 @@ paths:
         in: path
         description: The Organization Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
+     
       responses:
         "200":
           description: Success
@@ -2397,145 +2151,141 @@ paths:
         in: query
         description: An organization of which this organization forms a part
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: Any identifier for the organization (not the accreditation issuer's
           identifier)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address
         in: query
         description: "A server defined search that may match any of the string fields\
           \ in the Address, including line, city, district, state, country, postalCode,\
           \ and/or text"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-state
         in: query
         description: A state specified in an address
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: active
         in: query
         description: Is the Organization record active
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: type
         in: query
         description: A code for the type of organization
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-postalcode
         in: query
         description: A postal code specified in an address
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-country
         in: query
         description: A country specified in an address
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: endpoint
         in: query
         description: Technical endpoints providing access to services operated for
           the organization
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: phonetic
         in: query
         description: A portion of the organization's name using some kind of phonetic
           matching algorithm
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: name
         in: query
         description: A portion of the organization's name or alias
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-use
         in: query
         description: A use code specified in an address
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-city
         in: query
         description: A city specified in an address
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -2602,19 +2352,15 @@ paths:
           \n* [RelatedPerson](relatedperson.html): The Related Person's date of birth\r\
           \n"
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: deceased
         in: query
         description: "This patient has been marked as deceased, or as a death date\
           \ entered"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-state
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A state\
@@ -2623,8 +2369,8 @@ paths:
           \ in an address\r\n* [RelatedPerson](relatedperson.html): A state specified\
           \ in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: gender
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): Gender\
@@ -2632,31 +2378,27 @@ paths:
           * [Practitioner](practitioner.html): Gender of the practitioner\r\n* [RelatedPerson](relatedperson.html):\
           \ Gender of the related person\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: link
         in: query
         description: All patients linked to the given patient
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: language
         in: query
         description: Language code (irrespective of use value)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-country
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A country\
@@ -2665,19 +2407,15 @@ paths:
           \ in an address\r\n* [RelatedPerson](relatedperson.html): A country specified\
           \ in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: death-date
         in: query
         description: The date of death has been provided and satisfies this search
           value
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: phonetic
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A portion\
@@ -2688,8 +2426,8 @@ paths:
           \n* [RelatedPerson](relatedperson.html): A portion of name using some kind\
           \ of phonetic matching algorithm\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: telecom
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): The value\
@@ -2699,8 +2437,8 @@ paths:
           \ The value in any kind of contact\r\n* [RelatedPerson](relatedperson.html):\
           \ The value in any kind of contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-city
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A city\
@@ -2709,8 +2447,8 @@ paths:
           \ an address\r\n* [RelatedPerson](relatedperson.html): A city specified\
           \ in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: email
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A value\
@@ -2719,22 +2457,22 @@ paths:
           \ [PractitionerRole](practitionerrole.html): A value in an email contact\r\
           \n* [RelatedPerson](relatedperson.html): A value in an email contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: A patient identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: given
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A portion\
           \ of the given name of the patient\r\n* [Practitioner](practitioner.html):\
           \ A portion of the given name\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A server\
@@ -2749,27 +2487,27 @@ paths:
           \ that may match any of the string fields in the Address, including line,\
           \ city, district, state, country, postalCode, and/or text\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: general-practitioner
         in: query
         description: "Patient's nominated general practitioner, not the organization\
           \ that manages the record"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: active
         in: query
         description: Whether the patient record is active
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-postalcode
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A postalCode\
@@ -2778,14 +2516,14 @@ paths:
           \ in an address\r\n* [RelatedPerson](relatedperson.html): A postal code\
           \ specified in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: phone
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A value\
@@ -2794,26 +2532,26 @@ paths:
           \ A value in a phone contact\r\n* [RelatedPerson](relatedperson.html): A\
           \ value in a phone contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: organization
         in: query
         description: The organization that is the custodian of the patient record
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-use
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A use\
@@ -2822,49 +2560,49 @@ paths:
           \ in an address\r\n* [RelatedPerson](relatedperson.html): A use code specified\
           \ in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: name
         in: query
         description: "A server defined search that may match any of the string fields\
           \ in the HumanName, including family, give, prefix, suffix, suffix, and/or\
           \ text"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: family
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A portion\
           \ of the family name of the patient\r\n* [Practitioner](practitioner.html):\
           \ A portion of the family name\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -2917,7 +2655,7 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Patient resource
       responses:
         '201':
           description: A new Patient is submitted. Returns the created resource.
@@ -2979,7 +2717,7 @@ paths:
           type: string
       responses:
         '200':
-          description: Resource succesfully returned / No matches 
+          description: Resource succesfully returned / No matches
           schema:
             type: object
         '400':
@@ -3038,10 +2776,10 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Bundle with Patient resource
       responses:
         '200':
-          description: 	An update to an existing Patient bundle is submitted in order to invalidate an existing Patient. Returns the updated resource
+          description:   An update to an existing Patient bundle is submitted in order to invalidate an existing Patient. Returns the updated resource
           schema:
             type: object
         '400':
@@ -3091,61 +2829,9 @@ paths:
         in: path
         description: The Patient Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
+
       responses:
         "200":
           description: Success
@@ -3273,19 +2959,15 @@ paths:
           \n* [RelatedPerson](relatedperson.html): The Related Person's date of birth\r\
           \n"
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: deceased
         in: query
         description: "This patient has been marked as deceased, or as a death date\
           \ entered"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-state
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A state\
@@ -3294,8 +2976,8 @@ paths:
           \ in an address\r\n* [RelatedPerson](relatedperson.html): A state specified\
           \ in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: gender
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): Gender\
@@ -3303,31 +2985,27 @@ paths:
           * [Practitioner](practitioner.html): Gender of the practitioner\r\n* [RelatedPerson](relatedperson.html):\
           \ Gender of the related person\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: link
         in: query
         description: All patients linked to the given patient
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: language
         in: query
         description: Language code (irrespective of use value)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-country
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A country\
@@ -3336,19 +3014,15 @@ paths:
           \ in an address\r\n* [RelatedPerson](relatedperson.html): A country specified\
           \ in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: death-date
         in: query
         description: The date of death has been provided and satisfies this search
           value
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: phonetic
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A portion\
@@ -3359,8 +3033,8 @@ paths:
           \n* [RelatedPerson](relatedperson.html): A portion of name using some kind\
           \ of phonetic matching algorithm\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: telecom
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): The value\
@@ -3370,8 +3044,8 @@ paths:
           \ The value in any kind of contact\r\n* [RelatedPerson](relatedperson.html):\
           \ The value in any kind of contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-city
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A city\
@@ -3380,8 +3054,8 @@ paths:
           \ an address\r\n* [RelatedPerson](relatedperson.html): A city specified\
           \ in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: email
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A value\
@@ -3390,22 +3064,22 @@ paths:
           \ [PractitionerRole](practitionerrole.html): A value in an email contact\r\
           \n* [RelatedPerson](relatedperson.html): A value in an email contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: A patient identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: given
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A portion\
           \ of the given name of the patient\r\n* [Practitioner](practitioner.html):\
           \ A portion of the given name\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A server\
@@ -3420,27 +3094,27 @@ paths:
           \ that may match any of the string fields in the Address, including line,\
           \ city, district, state, country, postalCode, and/or text\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: general-practitioner
         in: query
         description: "Patient's nominated general practitioner, not the organization\
           \ that manages the record"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: active
         in: query
         description: Whether the patient record is active
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-postalcode
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A postalCode\
@@ -3449,14 +3123,14 @@ paths:
           \ in an address\r\n* [RelatedPerson](relatedperson.html): A postal code\
           \ specified in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: phone
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A value\
@@ -3465,26 +3139,26 @@ paths:
           \ A value in a phone contact\r\n* [RelatedPerson](relatedperson.html): A\
           \ value in a phone contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: organization
         in: query
         description: The organization that is the custodian of the patient record
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: address-use
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A use\
@@ -3493,49 +3167,49 @@ paths:
           \ in an address\r\n* [RelatedPerson](relatedperson.html): A use code specified\
           \ in an address\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: name
         in: query
         description: "A server defined search that may match any of the string fields\
           \ in the HumanName, including family, give, prefix, suffix, suffix, and/or\
           \ text"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: family
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A portion\
           \ of the family name of the patient\r\n* [Practitioner](practitioner.html):\
           \ A portion of the family name\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -3599,206 +3273,191 @@ paths:
         in: query
         description: The plan definition publication date
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: successor
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: jurisdiction
         in: query
         description: Intended jurisdiction for the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: derived-from
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: description
         in: query
         description: The description of the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: context-type
         in: query
         description: A type of use context assigned to the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: predecessor
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: composed-of
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: type
         in: query
         description: "The type of artifact the plan (e.g. order-set, eca-rule, protocol)"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: title
         in: query
         description: The human-friendly name of the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: depends-on
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: context-quantity
         in: query
         description: A quantity- or range-valued use context assigned to the plan
           definition
         required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: number
+        type: string
+
       - name: effective
         in: query
         description: The time during which the plan definition is intended to be in
           use
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: context
         in: query
         description: A use context assigned to the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: definition
         in: query
         description: Activity or plan definitions used by plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: External identifier for the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: version
         in: query
         description: The business version of the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: url
         in: query
         description: The uri that identifies the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: name
         in: query
         description: Computationally friendly name of the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: publisher
         in: query
         description: Name of the publisher of the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: topic
         in: query
         description: Topics associated with the module
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
         description: The current status of the plan definition
         required: false
-        schema:
-          type: string
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -3840,6 +3499,7 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
+    post:
       summary: Create a PlanDefinition Resource
       description: |
         This interaction creates a PlanDefinition resource based on the submitted data/body
@@ -3850,7 +3510,7 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR PlanDefinition resource
       responses:
         '201':
           description: A new PlanDefinition is submitted. Returns the created resource.
@@ -3955,67 +3615,16 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
+    patch:
       summary: "instance-patch: Patch a PlanDefinition ID"
       parameters:
       - name: id
         in: path
         description: The PlanDefinition Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
+
       responses:
         "200":
           description: Success
@@ -4107,7 +3716,7 @@ paths:
           description: Parameters resource supplying `subject`, `requester`, etc.
           required: true
           schema:
-            type: object  
+            title: FHIR Parameters resource
       responses:
         '200':
           description: Successfully instantiated workflow – returns Bundle snapshot
@@ -4115,34 +3724,44 @@ paths:
             type: object
         '400':
           description: Bad request (missing or invalid parameters)
-          schema: { type: object }
+          schema:
+            type: object
         '401':
           description: Failed authentication
-          schema: { type: object }
+          schema:
+            type: object
         '403':
           description: Failed authorization
-          schema: { type: object }
+          schema:
+            type: object
         '404':
           description: PlanDefinition not found
-          schema: { type: object }
+          schema:
+            type: object
         '406':
           description: Unsupported _format or Accept header
-          schema: { type: object }
+          schema:
+            type: object
         '422':
           description: Validation / business rule violation
-          schema: { type: object }
+          schema:
+            type: object
         '429':
           description: Too many requests
-          schema: { type: object }
+          schema:
+            type: object
         '500':
           description: Internal server error
-          schema: { type: object }
+          schema:
+            type: object
         '503':
           description: Service temporarily unavailable
-          schema: { type: object }
+          schema:
+            type: object
         '504':
           description: Downstream system timeout
-          schema: { type: object }
+          schema:
+            type: object
   /PlanDefinition/{id}/_history/{vid}:
     get:
       summary: Read a version specific PlanDefinition resource based on its ID
@@ -4222,206 +3841,181 @@ paths:
         in: query
         description: The plan definition publication date
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: successor
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+        type: string
       - name: jurisdiction
         in: query
         description: Intended jurisdiction for the plan definition
         required: false
-        schema:
-          type: string
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: derived-from
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+        type: string
       - name: description
         in: query
         description: The description of the plan definition
         required: false
-        schema:
-          type: string
+        type: string
       - name: context-type
         in: query
         description: A type of use context assigned to the plan definition
         required: false
-        schema:
-          type: string
+        type: string
       - name: predecessor
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+        type: string
       - name: composed-of
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+        type: string
       - name: type
         in: query
         description: "The type of artifact the plan (e.g. order-set, eca-rule, protocol)"
         required: false
-        schema:
-          type: string
+        type: string
       - name: title
         in: query
         description: The human-friendly name of the plan definition
         required: false
-        schema:
-          type: string
+        type: string
       - name: depends-on
         in: query
         description: What resource is being referenced
         required: false
-        schema:
-          type: string
+        type: string
       - name: context-quantity
         in: query
         description: A quantity- or range-valued use context assigned to the plan
           definition
         required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: number
+        type: string
+
       - name: effective
         in: query
         description: The time during which the plan definition is intended to be in
           use
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: context
         in: query
         description: A use context assigned to the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: definition
         in: query
         description: Activity or plan definitions used by plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: External identifier for the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: version
         in: query
         description: The business version of the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: url
         in: query
         description: The uri that identifies the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: name
         in: query
         description: Computationally friendly name of the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: publisher
         in: query
         description: Name of the publisher of the plan definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: topic
         in: query
         description: Topics associated with the module
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
         description: The current status of the plan definition
         required: false
-        schema:
-          type: string
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -4486,73 +4080,65 @@ paths:
         description: The period during which the practitioner is authorized to perform
           in these role(s)
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: identifier
         in: query
         description: A practitioner's Identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: specialty
         in: query
         description: The practitioner has this specialty at an organization
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: role
         in: query
         description: The practitioner can perform this role at for the organization
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: practitioner
         in: query
         description: Practitioner that is able to provide the defined services for
           the organization
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: active
         in: query
         description: Whether this practitioner role record is in active use
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: endpoint
         in: query
         description: Technical endpoints providing access to services operated for
           the practitioner with this role
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: phone
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A value\
@@ -4561,34 +4147,34 @@ paths:
           \ A value in a phone contact\r\n* [RelatedPerson](relatedperson.html): A\
           \ value in a phone contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: service
         in: query
         description: The list of healthcare services that this worker provides for
           this role's Organization/Location(s)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: organization
         in: query
         description: The identity of the organization the practitioner represents
           / acts on behalf of
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: telecom
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): The value\
@@ -4598,39 +4184,39 @@ paths:
           \ The value in any kind of contact\r\n* [RelatedPerson](relatedperson.html):\
           \ The value in any kind of contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: location
         in: query
         description: One of the locations at which this practitioner provides care
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: email
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A value\
@@ -4639,8 +4225,8 @@ paths:
           \ [PractitionerRole](practitionerrole.html): A value in an email contact\r\
           \n* [RelatedPerson](relatedperson.html): A value in an email contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -4693,7 +4279,7 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR PractitionerRole resource
       responses:
         '201':
           description: A new PractitionerRole is submitted. Returns the created resource.
@@ -4814,10 +4400,10 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Bundle with ParactitionerRole resource
       responses:
         '200':
-          description: 	An update to an existing PractitionerRole bundle is submitted in order to invalidate an existing PractitionerRole. Returns the updated resource
+          description:   An update to an existing PractitionerRole bundle is submitted in order to invalidate an existing PractitionerRole. Returns the updated resource
           schema:
             type: object
         '400':
@@ -4867,61 +4453,9 @@ paths:
         in: path
         description: The PractitionerRole Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
+
       responses:
         "200":
           description: Success
@@ -5047,73 +4581,65 @@ paths:
         description: The period during which the practitioner is authorized to perform
           in these role(s)
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: identifier
         in: query
         description: A practitioner's Identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: specialty
         in: query
         description: The practitioner has this specialty at an organization
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: role
         in: query
         description: The practitioner can perform this role at for the organization
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: practitioner
         in: query
         description: Practitioner that is able to provide the defined services for
           the organization
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: active
         in: query
         description: Whether this practitioner role record is in active use
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: endpoint
         in: query
         description: Technical endpoints providing access to services operated for
           the practitioner with this role
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: phone
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A value\
@@ -5122,34 +4648,34 @@ paths:
           \ A value in a phone contact\r\n* [RelatedPerson](relatedperson.html): A\
           \ value in a phone contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: service
         in: query
         description: The list of healthcare services that this worker provides for
           this role's Organization/Location(s)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: organization
         in: query
         description: The identity of the organization the practitioner represents
           / acts on behalf of
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: telecom
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): The value\
@@ -5159,39 +4685,39 @@ paths:
           \ The value in any kind of contact\r\n* [RelatedPerson](relatedperson.html):\
           \ The value in any kind of contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: location
         in: query
         description: One of the locations at which this practitioner provides care
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: email
         in: query
         description: "Multiple Resources: \r\n\r\n* [Patient](patient.html): A value\
@@ -5200,8 +4726,8 @@ paths:
           \ [PractitionerRole](practitionerrole.html): A value in an email contact\r\
           \n* [RelatedPerson](relatedperson.html): A value in an email contact\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -5265,130 +4791,110 @@ paths:
         in: query
         description: How the agent participated
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: signature-type
         in: query
         description: Indication of the reason the entity signed the object(s)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: agent
         in: query
         description: Who participated
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+        type: string
       - name: recorded
         in: query
         description: When the activity was recorded / updated
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: when
         in: query
         description: When the activity occurred
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: target
         in: query
         description: Target Reference(s) (usually version specific)
         required: false
-        schema:
-          type: string
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+        type: string
       - name: patient
         in: query
         description: Target Reference(s) (usually version specific)
         required: false
-        schema:
-          type: string
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+        type: string
       - name: location
         in: query
         description: "Where the activity occurred, if relevant"
         required: false
-        schema:
-          type: string
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: agent-role
         in: query
         description: What the agents role was
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: entity
         in: query
         description: Identity of entity
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -5441,7 +4947,7 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Provenance resource
       responses:
         '201':
           description: A new Provenance is submitted. Returns the created resource.
@@ -5562,10 +5068,10 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR bundle with Provenance resource
       responses:
         '200':
-          description: 	An update to an existing Provenance bundle is submitted in order to invalidate an existing Provenance. Returns the updated resource
+          description:   An update to an existing Provenance bundle is submitted in order to invalidate an existing Provenance. Returns the updated resource
           schema:
             type: object
         '400':
@@ -5615,61 +5121,9 @@ paths:
         in: path
         description: The Provenance Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
+
       responses:
         "200":
           description: Success
@@ -5794,130 +5248,117 @@ paths:
         in: query
         description: How the agent participated
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: signature-type
         in: query
         description: Indication of the reason the entity signed the object(s)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: agent
         in: query
         description: Who participated
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+        type: string
       - name: recorded
         in: query
         description: When the activity was recorded / updated
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: when
         in: query
         description: When the activity occurred
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: target
         in: query
         description: Target Reference(s) (usually version specific)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: patient
         in: query
         description: Target Reference(s) (usually version specific)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: location
         in: query
         description: "Where the activity occurred, if relevant"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: agent-role
         in: query
         description: What the agents role was
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: entity
         in: query
         description: Identity of entity
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -5977,22 +5418,22 @@ paths:
         This interaction searches for a list of published form templates
       operationId: questionnaireSearchByGet
       parameters:
-        - description: The questionnaire publication date	
+        - description: The questionnaire publication date  
           in: query
           name: date
           required: false
           type: string
-        - description: The name of the questionnaire	
+        - description: The name of the questionnaire  
           in: query
           name: name
           required: false
           type: string
-        - description: The description of the questionnaire	
+        - description: The description of the questionnaire  
           in: query
           name: description
           required: false
           type: string
-        - description: The status of the questionnaire	
+        - description: The status of the questionnaire  
           in: query
           name: status
           required: false
@@ -6026,14 +5467,13 @@ paths:
           in: query
           description: Search by designNote
           required: false
-          schema:
-            type: string
+  
+          type: string
         - name: assemble-expectation
           in: query
           description: Search by assemble-expectation
           required: false
-          schema:
-            type: string
+          type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -6086,7 +5526,7 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Questionnaire resource
       responses:
         '201':
           description: A new Questionnaire is submitted. Returns the created resource.
@@ -6207,10 +5647,10 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Bundle with Questionnaire resource
       responses:
         '200':
-          description: 	An update to an existing Questionnaire bundle is submitted in order to invalidate an existing Questionnaire. Returns the updated resource
+          description:   An update to an existing Questionnaire bundle is submitted in order to invalidate an existing Questionnaire. Returns the updated resource
           schema:
             type: object
         '400':
@@ -6260,61 +5700,9 @@ paths:
         in: path
         description: The Questionnaire Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
+
       responses:
         "200":
           description: Success
@@ -6434,23 +5822,24 @@ paths:
       summary: Search for Questionnaires using POST _search 
       description: This interaction searches for Questionnaire Resources
       operationId: questionnaireSearchByPost
+      consumes: ["application/x-www-form-urlencoded"]
       parameters:
-        - description: The questionnaire publication date	
+        - description: The questionnaire publication date  
           in: formData
           name: date
           required: false
           type: string
-        - description: The name of the questionnaire	
+        - description: The name of the questionnaire  
           in: formData
           name: name
           required: false
           type: string
-        - description: The description of the questionnaire	
+        - description: The description of the questionnaire  
           in: formData
           name: description
           required: false
           type: string
-        - description: The status of the questionnaire	
+        - description: The status of the questionnaire  
           in: formData
           name: status
           required: false
@@ -6539,7 +5928,7 @@ paths:
           name: author
           required: false
           type: string
-        - description: 	When the QuestionnaireResponse was last changed
+        - description:   When the QuestionnaireResponse was last changed
           in: query
           name: authored
           required: false
@@ -6549,7 +5938,7 @@ paths:
           name: patient
           required: false
           type: string
-        - description: 	The Questionnaire Resource the answers are provided for
+        - description:   The Questionnaire Resource the answers are provided for
           in: query
           name: questionnaire
           required: false
@@ -6559,12 +5948,12 @@ paths:
           name: source
           required: false
           type: string
-        - description: The status of the QuestionnaireResponse	
+        - description: The status of the QuestionnaireResponse  
           in: query
           name: status
           required: false
           type: string
-        - description: The subject of the QuestionnaireResponse	
+        - description: The subject of the QuestionnaireResponse  
           in: query
           name: subject
           required: false
@@ -6646,7 +6035,7 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR Questionnaire
       responses:
         '201':
           description: A new QuestionnaireResponse is submitted. Returns the created resource.
@@ -6767,10 +6156,10 @@ paths:
           name: body
           required: true
           schema:
-            type: object
+            title: FHIR QuestionnaireResponse resource
       responses:
         '200':
-          description: 	An update to an existing QuestionnaireResponse bundle is submitted in order to invalidate an existing QuestionnaireResponse. Returns the updated resource
+          description:   An update to an existing QuestionnaireResponse bundle is submitted in order to invalidate an existing QuestionnaireResponse. Returns the updated resource
           schema:
             type: object
         '400':
@@ -6820,61 +6209,9 @@ paths:
         in: path
         description: The QuestionnaireResponse Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
+
       responses:
         "200":
           description: Success
@@ -7054,13 +6391,14 @@ paths:
       summary: Search for QuestionnaireResponses using POST _search 
       description: This interaction searches for QuestionnaireResponse Resources
       operationId: questionnaireResponseSearchByPost
+      consumes: ["application/x-www-form-urlencoded"]
       parameters:
         - description: The author of the QuestionnaireResponse 
           in: formData
           name: author
           required: false
           type: string
-        - description: 	When the QuestionnaireResponse was last changed
+        - description:   When the QuestionnaireResponse was last changed
           in: formData
           name: authored
           required: false
@@ -7070,7 +6408,7 @@ paths:
           name: patient
           required: false
           type: string
-        - description: 	The Questionnaire Resource the answers are provided for
+        - description:   The Questionnaire Resource the answers are provided for
           in: formData
           name: questionnaire
           required: false
@@ -7080,12 +6418,12 @@ paths:
           name: source
           required: false
           type: string
-        - description: The status of the QuestionnaireResponse	
+        - description: The status of the QuestionnaireResponse  
           in: formData
           name: status
           required: false
           type: string
-        - description: The subject of the QuestionnaireResponse	
+        - description: The subject of the QuestionnaireResponse  
           in: formData
           name: subject
           required: false
@@ -7178,12 +6516,8 @@ paths:
         in: query
         description: Date request signed
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: code
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -7203,47 +6537,39 @@ paths:
           \ to identify a  procedure\r\n* [ServiceRequest](servicerequest.html): What\
           \ is being requested/ordered\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: requisition
         in: query
         description: Composite Request ID
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: subject
         in: query
         description: Search by subject
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: occurrence
         in: query
         description: When service should occur
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: based-on
         in: query
         description: What request fulfills
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: patient
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -7280,26 +6606,26 @@ paths:
           \ Patient for whom the item is supplied\r\n* [VisionPrescription](visionprescription.html):\
           \ The identity of a patient to list dispenses for\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: specimen
         in: query
         description: Specimen to be tested
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: instantiates-uri
         in: query
         description: Instantiates external protocol or definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: requester
         in: query
         description: Who/what is requesting service
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -7333,32 +6659,32 @@ paths:
           \ Identifier for SupplyRequest\r\n* [VisionPrescription](visionprescription.html):\
           \ Return prescriptions with this external identifier\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: performer
         in: query
         description: Requested performer
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: replaces
         in: query
         description: What request replaces
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: instantiates-canonical
         in: query
         description: Instantiates FHIR protocol or definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: encounter
         in: query
         description: "Multiple Resources: \r\n\r\n* [Composition](composition.html):\
@@ -7375,101 +6701,101 @@ paths:
           \ in which this request is made\r\n* [VisionPrescription](visionprescription.html):\
           \ Return prescriptions with this encounter identifier\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: priority
         in: query
         description: routine | urgent | asap | stat
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: performer-type
         in: query
         description: Performer role
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: intent
         in: query
         description: proposal | plan | directive | order | original-order | reflex-order
           | filler-order | instance-order | option
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: category
         in: query
         description: Classification of service
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: body-site
         in: query
         description: Where procedure is going to be done
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
         description: draft | active | on-hold | revoked | completed | entered-in-error
           | unknown
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: questionnaire
         in: query
         description: Search by questionnaire
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: businessStatus
         in: query
         description: Search by businessStatus
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -7511,51 +6837,51 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
-      responses:
-        '201':
-          description: A new ServiceRequest is submitted. Returns the created resource.
-          schema:
-            type: object
-        '400':
-          description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
-          schema:
-            type: object
-        '401':
-          description: Failed authentication
-          schema:
-            type: object
-        '403':
-          description: Failed authorization
-          schema:
-            type: object
-        '406':
-          description: The Accept header requested a format that the server does not support
-          schema:
-            type: object
-        '409':
-          description: Duplicate resource
-          schema:
-            type: object
-        '422':
-          description: Error, validation/business/semantically erroneous
-          schema:
-            type: object
-        '429':
-          description: Error, Too Many Requests
-          schema:
-            type: object
-        '500':
-          description: Error, Server internal error
-          schema:
-            type: object
-        '503':
-          description: Indicates that the services has been temporarily taken down (on purpose)
-          schema:
-            type: object
-        '504':
-          description: Downstream system(s) did not return timely response
-          schema:
-            type: object
+      # responses:
+      #   '201':
+      #     description: A new ServiceRequest is submitted. Returns the created resource.
+      #     schema:
+      #       type: object
+      #   '400':
+      #     description: Missing security token or bad request or operation contains incorrect header value for "Content-Type"
+      #     schema:
+      #       type: object
+      #   '401':
+      #     description: Failed authentication
+      #     schema:
+      #       type: object
+      #   '403':
+      #     description: Failed authorization
+      #     schema:
+      #       type: object
+      #   '406':
+      #     description: The Accept header requested a format that the server does not support
+      #     schema:
+      #       type: object
+      #   '409':
+      #     description: Duplicate resource
+      #     schema:
+      #       type: object
+      #   '422':
+      #     description: Error, validation/business/semantically erroneous
+      #     schema:
+      #       type: object
+      #   '429':
+      #     description: Error, Too Many Requests
+      #     schema:
+      #       type: object
+      #   '500':
+      #     description: Error, Server internal error
+      #     schema:
+      #       type: object
+      #   '503':
+      #     description: Indicates that the services has been temporarily taken down (on purpose)
+      #     schema:
+      #       type: object
+      #   '504':
+      #     description: Downstream system(s) did not return timely response
+      #     schema:
+      #       type: object
   /ServiceRequest/{id}:
     get:
       summary: Retrieve a ServiceRequest resources based on its ID
@@ -7615,67 +6941,16 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
+    patch:
       summary: "instance-patch: Patch a ServiceRequest ID"
       parameters:
       - name: id
         in: path
         description: The ServiceRequest Resource ID
         required: true
-        style: simple
-        schema:
-          minimum: 1
-          type: string
-        example: "123"
-      requestBody:
-        content:
-          application/fhir+json:
-            schema:
-              $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
-            example: |-
-              {
-                "resourceType": "Parameters",
-                "parameter": [ {
-                  "name": "operation",
-                  "part": [ {
-                    "name": "type",
-                    "valueString": "add"
-                  }, {
-                    "name": "path",
-                    "valueString": "Patient"
-                  }, {
-                    "name": "name",
-                    "valueString": "birthDate"
-                  }, {
-                    "name": "value",
-                    "valueDate": "1930-01-01"
-                  } ]
-                } ]
-              }
-          application/fhir+xml:
-            schema:
-              $ref: '#/components/schemas/FHIR-XML-RESOURCE'
-            example: |-
-              <Parameters xmlns="http://hl7.org/fhir">
-                 <parameter>
-                    <name value="operation"/>
-                    <part>
-                       <name value="type"/>
-                       <valueString value="add"/>
-                    </part>
-                    <part>
-                       <name value="path"/>
-                       <valueString value="Patient"/>
-                    </part>
-                    <part>
-                       <name value="name"/>
-                       <valueString value="birthDate"/>
-                    </part>
-                    <part>
-                       <name value="value"/>
-                       <valueDate value="1930-01-01"/>
-                    </part>
-                 </parameter>
-              </Parameters>
+        minimum: 1
+        type: string
+
       responses:
         "200":
           description: Success
@@ -7725,7 +7000,7 @@ paths:
     get:
       summary: Read a version specific ServiceRequest resource based on its ID
       consumes: ["application/fhir+json"]
-      produces: ["application/fhir+json"]      
+      produces: ["application/fhir+json"]
       description:  This interaction retireve a historical ServiceRequest resource
       operationId: ServiceRequestVRead
       parameters:
@@ -7828,41 +7103,52 @@ paths:
           description: Parameters resource containing `targetStatus`
           required: true
           schema:
-            type: object   
+            title: FHIR Parameters resource 
       responses:
         '200':
           description: Workflow transitioned, returns snapshot Bundle
-          schema: { type: object }
+          schema:
+            type: object
         '400':
           description: Bad request (missing or invalid targetStatus)
-          schema: { type: object }
+          schema:
+            type: object
         '401':
           description: Authentication failed
-          schema: { type: object }
+          schema:
+            type: object
         '403':
           description: Authorization failed
-          schema: { type: object }
+          schema:
+            type: object
         '404':
           description: ServiceRequest not found
-          schema: { type: object }
+          schema:
+            type: object
         '406':
           description: Unsupported _format or Accept header
-          schema: { type: object }
+          schema:
+            type: object
         '422':
           description: Business rule or validation error
-          schema: { type: object }
+          schema:
+            type: object
         '429':
           description: Too many requests
-          schema: { type: object }
+          schema:
+            type: object
         '500':
           description: Internal server error
-          schema: { type: object }
+          schema:
+            type: object
         '503':
           description: Service unavailable
-          schema: { type: object }
+          schema:
+            type: object
         '504':
           description: Timeout calling downstream service
-          schema: { type: object }
+          schema:
+            type: object
   /ServiceRequest/_search:
     parameters:
     - description: The client generated request ID
@@ -7879,12 +7165,8 @@ paths:
         in: query
         description: Date request signed
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: code
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -7904,47 +7186,39 @@ paths:
           \ to identify a  procedure\r\n* [ServiceRequest](servicerequest.html): What\
           \ is being requested/ordered\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: requisition
         in: query
         description: Composite Request ID
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: subject
         in: query
         description: Search by subject
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: occurrence
         in: query
         description: When service should occur
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: based-on
         in: query
         description: What request fulfills
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: patient
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -7981,26 +7255,26 @@ paths:
           \ Patient for whom the item is supplied\r\n* [VisionPrescription](visionprescription.html):\
           \ The identity of a patient to list dispenses for\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: specimen
         in: query
         description: Specimen to be tested
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: instantiates-uri
         in: query
         description: Instantiates external protocol or definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: requester
         in: query
         description: Who/what is requesting service
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: "Multiple Resources: \r\n\r\n* [AllergyIntolerance](allergyintolerance.html):\
@@ -8034,32 +7308,32 @@ paths:
           \ Identifier for SupplyRequest\r\n* [VisionPrescription](visionprescription.html):\
           \ Return prescriptions with this external identifier\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: performer
         in: query
         description: Requested performer
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: replaces
         in: query
         description: What request replaces
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: instantiates-canonical
         in: query
         description: Instantiates FHIR protocol or definition
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: encounter
         in: query
         description: "Multiple Resources: \r\n\r\n* [Composition](composition.html):\
@@ -8076,101 +7350,101 @@ paths:
           \ in which this request is made\r\n* [VisionPrescription](visionprescription.html):\
           \ Return prescriptions with this encounter identifier\r\n"
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: priority
         in: query
         description: routine | urgent | asap | stat
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: performer-type
         in: query
         description: Performer role
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: intent
         in: query
         description: proposal | plan | directive | order | original-order | reflex-order
           | filler-order | instance-order | option
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: category
         in: query
         description: Classification of service
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: body-site
         in: query
         description: Where procedure is going to be done
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
         description: draft | active | on-hold | revoked | completed | entered-in-error
           | unknown
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: questionnaire
         in: query
         description: Search by questionnaire
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: businessStatus
         in: query
         description: Search by businessStatus
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -8234,195 +7508,179 @@ paths:
         in: query
         description: Search by task code
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: subject
         in: query
         description: Search by subject
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: focus
         in: query
         description: Search by task focus
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: part-of
         in: query
         description: Search by task this task is part of
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: group-identifier
         in: query
         description: Search by group identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: based-on
         in: query
         description: Search by requests this task is based on
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: patient
         in: query
         description: Search by patient
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: modified
         in: query
         description: Search by last modification date
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: owner
         in: query
         description: Search by task owner
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: requester
         in: query
         description: Search by task requester
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: business-status
         in: query
         description: Search by business status
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: Search for a task instance by its business identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: period
         in: query
         description: Search by period Task is/was underway
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: performer
         in: query
         description: "Search by recommended type of performer (e.g., Requester, Performer,\
           \ Scheduler)."
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: encounter
         in: query
         description: Search by encounter
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: authored-on
         in: query
         description: Search by creation date
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: priority
         in: query
         description: Search by task priority
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: intent
         in: query
         description: Search by task intent
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
         description: Search by task status
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: task-replaces
         in: query
         description: Search by task-replaces
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches 
@@ -8602,195 +7860,179 @@ paths:
         in: query
         description: Search by task code
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: subject
         in: query
         description: Search by subject
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _lastUpdated
         in: query
         description: Only return resources which were last updated as specified by
           the given range
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: focus
         in: query
         description: Search by task focus
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: part-of
         in: query
         description: Search by task this task is part of
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: group-identifier
         in: query
         description: Search by group identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: based-on
         in: query
         description: Search by requests this task is based on
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: patient
         in: query
         description: Search by patient
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: modified
         in: query
         description: Search by last modification date
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: owner
         in: query
         description: Search by task owner
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: requester
         in: query
         description: Search by task requester
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: business-status
         in: query
         description: Search by business status
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: identifier
         in: query
         description: Search for a task instance by its business identifier
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: period
         in: query
         description: Search by period Task is/was underway
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: performer
         in: query
         description: "Search by recommended type of performer (e.g., Requester, Performer,\
           \ Scheduler)."
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _security
         in: query
         description: Search for resources which have the given security labels
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: encounter
         in: query
         description: Search by encounter
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: authored-on
         in: query
         description: Search by creation date
         required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
+        type: string
+
       - name: priority
         in: query
         description: Search by task priority
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: intent
         in: query
         description: Search by task intent
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _profile
         in: query
         description: Search for resources which have the given profile
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _has
         in: query
         description: Return resources linked to by the given target
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _tag
         in: query
         description: Search for resources which have the given tag
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _source
         in: query
         description: Search for resources which have the given source value (Resource.meta.source)
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _id
         in: query
         description: The ID of the resource
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _content
         in: query
         description: Search the contents of the resource's data using a fulltext search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: _text
         in: query
         description: Search the contents of the resource's narrative using a fulltext
           search
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: status
         in: query
         description: Search by task status
         required: false
-        schema:
-          type: string
+
+        type: string
       - name: task-replaces
         in: query
         description: Search by task-replaces
         required: false
-        schema:
-          type: string
+
+        type: string
       responses:
         '200':
           description: Resource succesfully returned / No matches
@@ -8832,4 +8074,3 @@ paths:
           description: Downstream system(s) did not return timely response
           schema:
             type: object
-
