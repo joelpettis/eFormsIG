@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: eForms API
-  version: 2.0.0
+  version: 2.0.1
   description: The eForms API is a FHIR API for creating and updating QuestionnaireResponses
 host: provider.tbd.ehealthontario.ca
 basePath: /api/fhir/r4/eForms
@@ -7468,6 +7468,66 @@ paths:
             type: object
         '406':
           description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '429':
+          description: Error, Too Many Requests
+          schema:
+            type: object
+        '500':
+          description: Error, Server internal error
+          schema:
+            type: object
+        '503':
+          description: Indicates that the services has been temporarily taken down (on purpose)
+          schema:
+            type: object
+        '504':
+          description: Downstream system(s) did not return timely response
+          schema:
+            type: object
+  /ServiceRequest/{id}/$pdf:
+    get:
+      summary: Retrieve a PDF binary of all the QuestionnaireResponses based on the parent ServiceRequest ID
+      produces:
+        - application/pdf
+        - application/json
+      description: |
+        This is a PDF binary for a all the QuestionnaireResponses based parent ServiceRequest ID
+      operationId: serviceRequestPDF
+      parameters:
+        - description: The id of the FHIR resource
+          in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: PDF succesfully returned
+          schema:
+            type: object
+        '400':
+          description: Bad request
+          schema:
+            type: object
+        '401':
+          description: Failed authentication
+          schema:
+            type: object
+        '403':
+          description: Failed authorization
+          schema:
+            type: object
+        '404':
+          description: Resource Not Found
+          schema:
+            type: object
+        '406':
+          description: The Accept header requested a format that the server does not support
+          schema:
+            type: object
+        '422':
+          description: FHIR validation errors such as invalid code, wrong date format or violation of LOB defined business rules
           schema:
             type: object
         '429':
