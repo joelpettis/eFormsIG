@@ -22,3 +22,10 @@ Alias: $EFormsTaskCodeCS                    = http://ontario.ca/fhir/eforms/Code
 Alias: $EFormsBusinessStatusCS              = http://ontario.ca/fhir/eforms/CodeSystem/business-status
 Alias: $DesignationUse                      = http://terminology.hl7.org/CodeSystem/designation-use
 Alias: $EFormsBusinessStatusVS              = http://ontario.ca/fhir/eforms/ValueSet/business-status
+
+//Search Parameters
+Alias: $QuestionnaireAssembleExpectationSP  = http://ontario.ca/fhir/eforms/SearchParameter/questionnaire-assemble-expectation
+Alias: $QuestionnaireWorkflowContextSP      = http://ontario.ca/fhir/eforms/SearchParameter/questionnaire-workflow-context
+Alias: $TaskBusinessStatusSP               = http://ontario.ca/fhir/eforms/SearchParameter/task-business-status
+Alias: $TaskWorkflowStepSP                 = http://ontario.ca/fhir/eforms/SearchParameter/task-workflow-step
+Alias: $TaskFormReferenceSP                = http://ontario.ca/fhir/eforms/SearchParameter/task-form-reference

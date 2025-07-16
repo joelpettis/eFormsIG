@@ -48,7 +48,6 @@ It tracks the work item of getting a specific eForm completed. It includes custo
 * output[response].value[x] MS
 * output[response].value[x] ^short = "url"
 
-
 Invariant: sdc-t1
 Description: "Either code is 'fulfill', focus is ServiceRequest and no 'questionnaire' input; or code is 'complete-questionnaire', focus is omitted and 'questionnaire' input is present"
 * severity = #error

@@ -49,13 +49,25 @@ dependencies:
 # sub-pages.
 #
 pages:
-   index.md:
+  index.md:
     title: eForms Home
-#   implementation.xml:
-#   examples.xml:
-#     title: Examples Overview
-#     simpleExamples.xml:
-#     complexExamples.xml:
+  implementation.md:
+    title: Implementation
+  examples.md:
+    title: Examples
+  downloads.md:
+    title: Downloads
+  cross-version-analysis.md:
+    title: Cross-Version Analysis  
+  dependency-table.md:
+    title: Dependencies
+  globals-table.md:
+    title: Globals
+  changes.md:
+    title: Changes
+  
+
+
 #
 #
 # The parameters property represents IG.definition.parameter. Rather
@@ -87,6 +99,22 @@ parameters:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
+  Implementation: implementation.html
+  Profiles:
+    Questionnaire: StructureDefinition-EFormQuestionnaire.html
+    QuestionnaireResponse: StructureDefinition-EFormQuestionnaireResponse.html
+    Task: StructureDefinition-EFormsTaskProfile.html
+    ServiceRequest: StructureDefinition-EFormsServiceRequest.html
+    Patient: StructureDefinition-EFormPatient.html
+    Organization: StructureDefinition-EFormOrganization.html
+    PractitionerRole: StructureDefinition-EFormPractitionerRole.html
+  Examples: examples.html
+  Downloads: downloads.html
+  Analysis:
+    Cross-Version Analysis: cross-version-analysis.html
+    Dependencies: dependency-table.html
+    Globals: globals-table.html
+  Changes: changes.html
   FHIR Artifacts: artifacts.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
